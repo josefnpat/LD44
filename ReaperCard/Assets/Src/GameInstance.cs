@@ -6,13 +6,13 @@ using UnityEngine.SceneManagement;
 /*
  *    GameInstance
  *  Contains runtime references and critical game framework behaviour.
- * 
+ *
  *  Important functions:
  *        PlayerActor GetPlayerActor()
  *        PlayerController GetPlayerController()
- * 
- * 
- */ 
+ *
+ *
+ */
 
 public static class Game
 {
@@ -31,6 +31,7 @@ public class GameInstance : MonoBehaviour
     private Actor PlayerActor;
     private PlayerController Controller;
 
+    public GameState gameState = new GameState();
 
     public Vector3 StartLocation
     {
@@ -47,7 +48,7 @@ public class GameInstance : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // Check to see if we're already started a session (this allows every room to have an object for designers to start from any room)
         if(Game.GInstance)
@@ -73,7 +74,7 @@ public class GameInstance : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     Actor GetPlayerActor()
@@ -96,6 +97,10 @@ public class GameInstance : MonoBehaviour
         Obj = Instantiate(PlayerPrefab, StartLocation, StartRot);
         Controller = Obj.GetComponent<PlayerController>();
         Controller.PlayerActor = PlayerActor;
+    }
+
+    public void SpawnInventoryItems() {
+
     }
 
     public void StartSession()
@@ -125,6 +130,4 @@ public class GameInstance : MonoBehaviour
         Debug.Log(string.Format("Loading scene {0}", SceneName), this);
         SceneManager.LoadScene(SceneName);
     }
-
-    
 }
