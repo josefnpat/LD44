@@ -29,6 +29,9 @@ sysinfo.txt
 *.pidb
 .DS_Store
 
+### VSCode
+.vscode
+
 ###
 # OS generated
 ###
