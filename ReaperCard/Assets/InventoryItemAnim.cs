@@ -21,6 +21,7 @@ public class InventoryItemAnim : MonoBehaviour
     void Init(InventoryItem _item) {
         item = _item;
         startTime = Time.time;
+        GetComponent<MeshRenderer>().material.mainTexture = item.texture;
     }
 
     // Update is called once per frame

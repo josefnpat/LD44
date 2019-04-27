@@ -20,7 +20,7 @@ public class Inventory : MonoBehaviour
     // where to put this?
     void spawnAnimItem(string itemName) {
         var item = InventoryItem.getByName(itemName);
-        Debug.Assert(item);
+        Debug.Assert(item, "Unknown item of type " + itemName);
         var obj = Instantiate(itemAnimPrefab, transform);
         obj.SendMessage("Init", item);
     }

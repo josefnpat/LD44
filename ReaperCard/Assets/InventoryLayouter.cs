@@ -48,7 +48,7 @@ public class InventoryLayouter : MonoBehaviour
         for(var i = 0; i < items.Count; ++i) {
             // there is an item, but it's the wrong one
             if(itemObjects.Count > i &&
-                    itemObjects[i].GetComponent<UiInventoryItem>().item.name != items[i]) {
+                    itemObjects[i].GetComponent<UiInventoryItem>().item.itemName != items[i]) {
                 Destroy(itemObjects[i]);
                 itemObjects[i] = null;
             }
@@ -60,7 +60,7 @@ public class InventoryLayouter : MonoBehaviour
             }
 
             if(itemObjects[i] == null) {
-                Debug.Assert(inventoryItems.ContainsKey(items[i]));
+                Debug.Assert(inventoryItems.ContainsKey(items[i]), "Missing inventory item of type " + items[i]);
                 var invItem = inventoryItems[items[i]];
                 var obj = new GameObject();
                 obj.transform.parent = transform;
