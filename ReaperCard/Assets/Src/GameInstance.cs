@@ -81,6 +81,7 @@ public class GameInstance : MonoBehaviour
 
 		Obj = Instantiate(PlayerPrefab, StartLocation, StartRot);
 		Controller = Obj.GetComponent<PlayerController>();
+		Controller.PlayerActor = PlayerActor;
 	}
 
 	public void StartSession()
