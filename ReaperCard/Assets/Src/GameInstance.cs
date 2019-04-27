@@ -36,8 +36,6 @@ public class GameInstance : MonoBehaviour
     private PlayerController Controller;
     private CameraManager Cameras;
 
-    public GameState gameState = new GameState();
-
     public Vector3 StartLocation;
 
     public EFacingDirection StartDirection
@@ -130,7 +128,7 @@ public class GameInstance : MonoBehaviour
         GameObject Obj1 = Instantiate(ControllerPrefab) as GameObject;
         GameObject Obj2 = Instantiate(CameraPrefab) as GameObject;
         GameObject Obj3 = Instantiate(PlayerPrefab, StartLocation, StartRot) as GameObject;
-  
+
         //Controller = Obj2.gameObject.GetComponent<PlayerController>();
         //PlayerActor = Obj.GetComponent<Actor>();// as Actor;
 
