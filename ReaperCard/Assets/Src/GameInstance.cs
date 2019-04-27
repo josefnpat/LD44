@@ -24,21 +24,21 @@ public class GameInstance : MonoBehaviour
     private static string EndSessionScene = "TempReset";
 
     [Header("Prefab Config")]
+    [SerializeField]
     public GameObject PlayerPrefab;
+    [SerializeField]
     public GameObject ControllerPrefab;
+    [SerializeField]
+    public GameObject CameraPrefab;
     //[Space(20)]
 
     private Actor PlayerActor;
     private PlayerController Controller;
+    private CameraManager Cameras;
 
     public GameState gameState = new GameState();
 
-    public Vector3 StartLocation
-    {
-        get;
-
-        set;
-    }
+    public Vector3 StartLocation;
 
     public EFacingDirection StartDirection
     {
@@ -77,26 +77,64 @@ public class GameInstance : MonoBehaviour
 
     }
 
-    Actor GetPlayerActor()
+    public void SetPlayerActor(Actor player)
+    {
+        if(Controller)
+        {
+            Controller.PlayerActor = player;
+        }
+        if(Cameras)
+        {
+            Cameras.setPlayerActor(player);
+        }
+        PlayerActor = player;
+    }
+
+    public Actor GetPlayerActor()
     {
         return PlayerActor;
     }
 
-    PlayerController GetPlayerController()
+    public void SetPlayerController(PlayerController pc)
+    {
+        if (PlayerActor)
+        {
+            pc.PlayerActor = PlayerActor;
+        }
+        Controller = pc;
+    }
+
+    public PlayerController GetPlayerController()
     {
         return Controller;
     }
 
+    public void SetCameraManager(CameraManager cm)
+    {
+        if (PlayerActor)
+        {
+            cm.setPlayerActor(PlayerActor);
+        }
+        Cameras = cm;
+    }
+
+    public CameraManager GetCameraManager()
+    {
+        return Cameras;
+    }
+
     public void SpawnPlayer()
     {
-        GameObject Obj = Instantiate(ControllerPrefab);
-        PlayerActor = Obj.GetComponent<Actor>();
-
         Quaternion StartRot = Quaternion.Euler(0f, 0f, 0f);
 
-        Obj = Instantiate(PlayerPrefab, StartLocation, StartRot);
-        Controller = Obj.GetComponent<PlayerController>();
-        Controller.PlayerActor = PlayerActor;
+        GameObject Obj1 = Instantiate(ControllerPrefab) as GameObject;
+        GameObject Obj2 = Instantiate(CameraPrefab) as GameObject;
+        GameObject Obj3 = Instantiate(PlayerPrefab, StartLocation, StartRot) as GameObject;
+  
+        //Controller = Obj2.gameObject.GetComponent<PlayerController>();
+        //PlayerActor = Obj.GetComponent<Actor>();// as Actor;
+
+        //Controller.PlayerActor = PlayerActor;
     }
 
     public void SpawnInventoryItems() {

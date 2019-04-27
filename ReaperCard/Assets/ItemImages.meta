@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:ReaperCard/Assets/ItemImages.meta
 guid: 2b2aec309b28747429409028f0f1c130
+=======
+guid: 0868f12f89bcde74ab5ba03913d4ba54
+>>>>>>> 252c05fc941bf6498f25eb865b0de0142b11e506:ReaperCard/Assets/TempGfx.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
