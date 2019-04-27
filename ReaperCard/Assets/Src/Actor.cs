@@ -22,9 +22,15 @@ public enum EDoesFloat
  *  Relevant functionality:
  *        AddMovementInput(Vector3 Direction, float Scale)
  * 
- */ 
+ */
 
-    
+public enum EActorState
+{
+    Walking,
+    ReceivingItem,
+    InConversation
+}
+
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
 public class Actor : MonoBehaviour
 {
@@ -33,6 +39,7 @@ public class Actor : MonoBehaviour
     public GameObject LeftPlane;
     public GameObject RightPlane;
 
+    private EActorState CurrentState = EActorState.Walking;
     private Vector3 pendingMovement = new Vector3();
     private Vector3 currentVelocity;
     public EFacingDirection facingDirection = EFacingDirection.Right;
@@ -49,6 +56,8 @@ public class Actor : MonoBehaviour
     public float floatOffsetY = 1.53f;
     public float floatSpeed = 8;
     public float floatRadius = 1.5f;
+
+    private float floorCheckSphereRadius = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -160,5 +169,30 @@ public class Actor : MonoBehaviour
         
 
         pendingMovement = Vector3.zero;
+    }
+
+    //public bool CanJump()
+    //{
+    //    if (currentVelocity.y < 0 && )
+    //}
+
+    public void SetState(EActorState NewState)
+    {
+        CurrentState = NewState;
+    }
+
+    public EActorState GetState()
+    {
+        return CurrentState;
+    }
+
+    public Transform GetTransform()
+    {
+        return transform;
+    }
+
+    public Transform GetInteractibleTargetTransform()
+    {
+        return transform;
     }
 }

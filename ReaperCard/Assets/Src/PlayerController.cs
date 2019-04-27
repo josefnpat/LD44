@@ -2,18 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EPlayerState
-{
-    Walking,
-    ReceivingItem,
-    InConversation
-}
+
 
 public class PlayerController : MonoBehaviour
 {
     public InputWrapper Controls;
-
-    private EPlayerState CurrentState = EPlayerState.Walking;
 
     public Actor PlayerActor;
     //public Actor PlayerActor
@@ -41,13 +34,5 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void SetState(EPlayerState NewState)
-    {
-        CurrentState = NewState;
-    }
 
-    public EPlayerState GetState()
-    {
-        return CurrentState;
-    }
 }
