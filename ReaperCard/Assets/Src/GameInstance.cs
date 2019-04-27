@@ -3,6 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+ *	GameInstance
+ *  Contains runtime references and critical game framework behaviour.
+ * 
+ *  Important functions:
+ *		PlayerActor GetPlayerActor()
+ *		PlayerController GetPlayerController()
+ * 
+ * 
+ */ 
+
 public static class Game
 {
 	public static GameInstance GInstance = null;
@@ -11,6 +22,15 @@ public static class Game
 public class GameInstance : MonoBehaviour
 {
 	private static string EndSessionScene = "TempReset";
+
+	[Header("Prefab Config")]
+	public GameObject PlayerPrefab;
+	public GameObject ControllerPrefab;
+	//[Space(20)]
+
+	private Actor PlayerActor;
+	private PlayerController Controller;
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,17 +50,50 @@ public class GameInstance : MonoBehaviour
 		}
     }
 
+	// Called when the scene is loaded
+	void OnSceneLoaded(Scene InScene, LoadSceneMode Mode)
+	{
+		SpawnPlayer();
+	}
+
     // Update is called once per frame
     void Update()
     {
         
     }
 
+	Actor GetPlayerActor()
+	{
+		return PlayerActor;
+	}
+
+	PlayerController GetPlayerController()
+	{
+		return Controller;
+	}
+
+	public void SpawnPlayer()
+	{
+		GameObject Obj = Instantiate(ControllerPrefab);
+		PlayerActor = Obj.GetComponent<Actor>();
+
+		Quaternion StartRot = Quaternion.Euler(0f, 0f, 0f);
+
+		Obj = Instantiate(PlayerPrefab, StartLocation, StartRot);
+		Controller = Obj.GetComponent<PlayerController>();
+	}
+
 	public void StartSession()
 	{
 		// Game instance persists for the entire session
 		DontDestroyOnLoad(this.gameObject);
 		Game.GInstance = this;
+
+		// Bind events
+		SceneManager.sceneLoaded += OnSceneLoaded;
+
+		// Spawn intial player for now
+		SpawnPlayer();
 	}
 
 	public void EndSession()
@@ -59,6 +112,13 @@ public class GameInstance : MonoBehaviour
 	}
 
 	public Vector3 StartLocation
+	{
+		get;
+
+		set;
+	}
+
+	public EFacingDirection StartDirection
 	{
 		get;
 

@@ -2,20 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        print("Hello");
-    }
+	public InputWrapper Controls;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            print("Fire1");
-        }
-    }
+	public Actor PlayerActor
+	{
+		get;
+
+		set;
+	}
+
+	
+	
+
+	// Start is called before the first frame update
+	void Start()
+	{
+		Controls = new InputWrapper();
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+
+		// Poll input
+		if (Controls.IsDown(EKey.Cancel))
+		{
+			Game.GInstance.EndSession();
+		}
+
+		if(Controls.IsDown(EKey.Confirm))
+		{
+			Game.GInstance.ChangeScene("Test");
+		}
+
+	}
 }
