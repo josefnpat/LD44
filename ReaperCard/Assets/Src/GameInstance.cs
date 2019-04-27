@@ -28,10 +28,13 @@ public class GameInstance : MonoBehaviour
     public GameObject PlayerPrefab;
     [SerializeField]
     public GameObject ControllerPrefab;
+    [SerializeField]
+    public GameObject CameraPrefab;
     //[Space(20)]
 
     private Actor PlayerActor;
     private PlayerController Controller;
+    private CameraManager Cameras;
 
 
     public Vector3 StartLocation;
@@ -79,6 +82,10 @@ public class GameInstance : MonoBehaviour
         {
             Controller.PlayerActor = player;
         }
+        if(Cameras)
+        {
+            Cameras.setPlayerActor(player);
+        }
         PlayerActor = player;
     }
 
@@ -89,7 +96,7 @@ public class GameInstance : MonoBehaviour
 
     public void SetPlayerController(PlayerController pc)
     {
-        if(PlayerActor)
+        if (PlayerActor)
         {
             pc.PlayerActor = PlayerActor;
         }
@@ -101,17 +108,30 @@ public class GameInstance : MonoBehaviour
         return Controller;
     }
 
+    public void SetCameraManager(CameraManager cm)
+    {
+        if (PlayerActor)
+        {
+            cm.setPlayerActor(PlayerActor);
+        }
+        Cameras = cm;
+    }
+
+    public CameraManager GetCameraManager()
+    {
+        return Cameras;
+    }
+
     public void SpawnPlayer()
     {
-        GameObject Obj = Instantiate(ControllerPrefab) as GameObject;
-        
-        PlayerActor = Obj.GetComponent<Actor>();// as Actor;
-
-
         Quaternion StartRot = Quaternion.Euler(0f, 0f, 0f);
 
-        GameObject Obj2 = (GameObject)Instantiate(PlayerPrefab, StartLocation, StartRot);
+        GameObject Obj1 = Instantiate(ControllerPrefab) as GameObject;
+        GameObject Obj2 = Instantiate(CameraPrefab) as GameObject;
+        GameObject Obj3 = Instantiate(PlayerPrefab, StartLocation, StartRot) as GameObject;
+  
         //Controller = Obj2.gameObject.GetComponent<PlayerController>();
+        //PlayerActor = Obj.GetComponent<Actor>();// as Actor;
 
         //Controller.PlayerActor = PlayerActor;
     }
