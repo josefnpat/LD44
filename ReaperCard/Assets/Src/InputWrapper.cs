@@ -67,9 +67,9 @@ public class InputWrapper
     // Axis values
 
     // Get WASD or Left Stick Axis
-    public Vector2 GetXY()
+    public Vector3 GetXY()
     {
-        return new Vector2(Input.GetAxis(AxisNameX), Input.GetAxis(AxisNameY));
+        return new Vector3(Input.GetAxis(AxisNameX), 0f, Input.GetAxis(AxisNameY));
     }
 
     // Get the WASD or Left Stick value for a single axis

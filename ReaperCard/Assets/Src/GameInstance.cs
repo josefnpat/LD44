@@ -24,7 +24,9 @@ public class GameInstance : MonoBehaviour
     private static string EndSessionScene = "TempReset";
 
     [Header("Prefab Config")]
+    [SerializeField]
     public GameObject PlayerPrefab;
+    [SerializeField]
     public GameObject ControllerPrefab;
     //[Space(20)]
 
@@ -32,12 +34,7 @@ public class GameInstance : MonoBehaviour
     private PlayerController Controller;
 
 
-    public Vector3 StartLocation
-    {
-        get;
-
-        set;
-    }
+    public Vector3 StartLocation;
 
     public EFacingDirection StartDirection
     {
@@ -76,26 +73,47 @@ public class GameInstance : MonoBehaviour
         
     }
 
-    Actor GetPlayerActor()
+    public void SetPlayerActor(Actor player)
+    {
+        if(Controller)
+        {
+            Controller.PlayerActor = player;
+        }
+        PlayerActor = player;
+    }
+
+    public Actor GetPlayerActor()
     {
         return PlayerActor;
     }
 
-    PlayerController GetPlayerController()
+    public void SetPlayerController(PlayerController pc)
+    {
+        if(PlayerActor)
+        {
+            pc.PlayerActor = PlayerActor;
+        }
+        Controller = pc;
+    }
+
+    public PlayerController GetPlayerController()
     {
         return Controller;
     }
 
     public void SpawnPlayer()
     {
-        GameObject Obj = Instantiate(ControllerPrefab);
-        PlayerActor = Obj.GetComponent<Actor>();
+        GameObject Obj = Instantiate(ControllerPrefab) as GameObject;
+        
+        PlayerActor = Obj.GetComponent<Actor>();// as Actor;
+
 
         Quaternion StartRot = Quaternion.Euler(0f, 0f, 0f);
 
-        Obj = Instantiate(PlayerPrefab, StartLocation, StartRot);
-        Controller = Obj.GetComponent<PlayerController>();
-        Controller.PlayerActor = PlayerActor;
+        GameObject Obj2 = (GameObject)Instantiate(PlayerPrefab, StartLocation, StartRot);
+        //Controller = Obj2.gameObject.GetComponent<PlayerController>();
+
+        //Controller.PlayerActor = PlayerActor;
     }
 
     public void StartSession()

@@ -8,6 +8,11 @@ public enum EFacingDirection
     Right
 }
 
+public enum EDoesFloat
+{
+    DoesNotFloat,
+    Floats
+}
 /*
  *  Actor
  *  Represents a character in the world.
@@ -23,35 +28,129 @@ public enum EFacingDirection
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
 public class Actor : MonoBehaviour
 {
-    CapsuleCollider Capsule;
-    Rigidbody Body;
+    CapsuleCollider capsule;
+    Rigidbody body;
+    public GameObject LeftPlane;
+    public GameObject RightPlane;
 
-    Vector3 PendingVelocity;
+    private Vector3 pendingMovement = new Vector3();
+    private Vector3 currentVelocity;
+    public EFacingDirection facingDirection = EFacingDirection.Right;
 
     [Header("Movement Settings")]
-    float WalkSpeed = 100;
+    public float accel = 10;
+    public float maxSpeed = 10;
+    public float frictionCoef = 0.5f;
+    public float rotationSpeed = 0.25f;
+
+    [Space(20)]
+    [Header("Floating Settings")]
+    public EDoesFloat DoesFloat = EDoesFloat.Floats;
+    public float FloatOffsetY = 1.53f;
+    public float FloatSpeed = 8;
+    public float FloatRadius = 1.5f;
 
     // Start is called before the first frame update
     void Start()
     {
-        Capsule = GetComponent<CapsuleCollider>();
-        Body = GetComponent<Rigidbody>();
+        capsule = GetComponent<CapsuleCollider>();
+        body = GetComponent<Rigidbody>();
+
+        LeftPlane = transform.Find("LeftPlane").gameObject;
+        RightPlane = transform.Find("RightPlane").gameObject;
+
+        //transform.position += new Vector3(0, 10, 0);
+
+        Game.GInstance.SetPlayerActor(this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        ApplyVelocity();
+        float dt = Time.deltaTime;
+        ApplyVelocity(dt);
+        UpdateFacing(dt);
+
+        if(DoesFloat == EDoesFloat.Floats)
+        {
+            Vector3 offset = LeftPlane.transform.localPosition;
+            offset.y = Mathf.Sin(Time.time / 4) * 2;
+            //print(y);
+            LeftPlane.transform.localPosition = offset;
+            RightPlane.transform.localPosition = offset;
+        }
+        
     }
 
     // Queues up movement for the next movement update, preferably a unit vector
     public void AddMovementInput(Vector3 Direction, float Scale)
     {
-        PendingVelocity += Direction * Scale;
+        pendingMovement += Direction * Scale;
     }
 
-    public void ApplyVelocity()
+    public void UpdateFacing(float dt)
     {
-        Body.MovePosition(transform.position + PendingVelocity * WalkSpeed * Time.deltaTime);
+        float yaw = transform.rotation.eulerAngles.y;
+        if (currentVelocity.magnitude > 0)
+        {
+
+            facingDirection = currentVelocity.x < 0 ? EFacingDirection.Left : EFacingDirection.Right;
+        }
+
+        float targetYaw = (facingDirection == EFacingDirection.Left) ? -180 : 0;
+
+        //if(facingDirection == EFacingDirection.Left)
+        //{
+
+        //    yaw -= rotationSpeed * dt;
+        //    targetYaw = -180f;
+        //}
+        //else
+        //{
+        //    yaw += rotationSpeed * dt;
+        //    targetYaw = 0f;
+        //}
+
+        yaw = Mathf.LerpAngle(yaw, targetYaw, rotationSpeed);
+        if(Mathf.Approximately(yaw, targetYaw))
+        {
+            yaw = targetYaw;
+        }
+
+
+       //if(yaw > -180 && yaw < 0)
+       // { 
+            //if (facingDirection == EFacingDirection.Left)
+            //{
+            //    yaw = Mathf.Max(yaw - RotationSpeed * dt, -180);
+            //}
+            //else
+            //{
+            //    yaw = Mathf.Min(yaw + RotationSpeed * dt, 0);
+            //}
+            transform.rotation = Quaternion.Euler(0f, yaw, 0f);
+        //}
+    }
+
+    public void ApplyVelocity(float dt)
+    {
+        currentVelocity += pendingMovement * accel * dt;
+        float mag = currentVelocity.magnitude;
+
+        Vector3 direction = currentVelocity.normalized;
+        if (mag > maxSpeed)
+        {
+            currentVelocity = direction * maxSpeed;
+        }
+       
+        body.MovePosition(transform.position + currentVelocity * dt);
+
+        currentVelocity *= frictionCoef;
+        if (currentVelocity.magnitude < 0.01)
+        {
+            currentVelocity = Vector3.zero;
+        }
+
+        pendingMovement = Vector3.zero;
     }
 }

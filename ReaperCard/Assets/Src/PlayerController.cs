@@ -8,20 +8,20 @@ public class PlayerController : MonoBehaviour
 {
     public InputWrapper Controls;
 
-    public Actor PlayerActor
-    {
-        get;
+    public Actor PlayerActor;
+    //public Actor PlayerActor
+    //{
+    //    get;
 
-        set;
-    }
-
-    
-    
+    //    set;
+    //}
 
     // Start is called before the first frame update
     void Start()
     {
         Controls = new InputWrapper();
+
+        Game.GInstance.SetPlayerController(this);
     }
 
     // Update is called once per frame
