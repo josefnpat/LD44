@@ -6,38 +6,31 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	public InputWrapper Controls;
+    public InputWrapper Controls;
 
-	public Actor PlayerActor
-	{
-		get;
+    public Actor PlayerActor
+    {
+        get;
 
-		set;
-	}
+        set;
+    }
 
-	
-	
+    
+    
 
-	// Start is called before the first frame update
-	void Start()
-	{
-		Controls = new InputWrapper();
-	}
+    // Start is called before the first frame update
+    void Start()
+    {
+        Controls = new InputWrapper();
+    }
 
-	// Update is called once per frame
-	void Update()
-	{
+    // Update is called once per frame
+    void Update()
+    {
 
-		// Poll input
-		if (Controls.IsDown(EKey.Cancel))
-		{
-			Game.GInstance.EndSession();
-		}
+        // Poll input
+        Vector3 Move = Controls.GetXY();
+        PlayerActor.AddMovementInput(Move, 1f);
 
-		if(Controls.IsDown(EKey.Confirm))
-		{
-			Game.GInstance.ChangeScene("Test");
-		}
-
-	}
+    }
 }

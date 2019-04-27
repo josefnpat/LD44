@@ -4,8 +4,8 @@ using UnityEngine;
 
 public enum EFacingDirection
 {
-	Left,
-	Right
+    Left,
+    Right
 }
 
 /*
@@ -15,40 +15,43 @@ public enum EFacingDirection
  *
  * 
  *  Relevant functionality:
- *	
+ *        AddMovementInput(Vector3 Direction, float Scale)
  * 
  */ 
 
-	
+    
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
 public class Actor : MonoBehaviour
 {
-	CapsuleCollider Capsule;
-	Rigidbody Body;
+    CapsuleCollider Capsule;
+    Rigidbody Body;
 
-	Vector3 PendingVelocity;
+    Vector3 PendingVelocity;
 
-	// Start is called before the first frame update
-	void Start()
-	{
-		Capsule = GetComponent<CapsuleCollider>();
-		Body = GetComponent<Rigidbody>();
-	}
+    [Header("Movement Settings")]
+    float WalkSpeed = 100;
 
-	// Update is called once per frame
-	void Update()
-	{
-		
-	}
+    // Start is called before the first frame update
+    void Start()
+    {
+        Capsule = GetComponent<CapsuleCollider>();
+        Body = GetComponent<Rigidbody>();
+    }
 
-	// Queues up movement for the next movement update, preferably a unit vector
-	void AddMovementInput(Vector3 Direction, float Scale)
-	{
-		PendingVelocity += Direction * Scale;
-	}
+    // Update is called once per frame
+    void Update()
+    {
+        ApplyVelocity();
+    }
 
-	void ApplyVelocity()
-	{
+    // Queues up movement for the next movement update, preferably a unit vector
+    public void AddMovementInput(Vector3 Direction, float Scale)
+    {
+        PendingVelocity += Direction * Scale;
+    }
 
-	}
+    public void ApplyVelocity()
+    {
+        Body.MovePosition(transform.position + PendingVelocity * WalkSpeed * Time.deltaTime);
+    }
 }
