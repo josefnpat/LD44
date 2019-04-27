@@ -1,13 +1,8 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:ReaperCard/Assets/Items.meta
 guid: c4cb1a6667b6b0644888f3168a9d43b7
 folderAsset: yes
 DefaultImporter:
-=======
-guid: b92cc895aa502d54ca1633aa89e10836
-PrefabImporter:
->>>>>>> 252c05fc941bf6498f25eb865b0de0142b11e506:ReaperCard/Assets/FrameworkPrefabs/CameraManager.prefab.meta
   externalObjects: {}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  userData:
+  assetBundleName:
+  assetBundleVariant:
