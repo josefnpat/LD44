@@ -5,51 +5,51 @@ using Cinemachine;
 
 public class CameraManager : MonoBehaviour
 {
-    [SerializeField]
-    public GameObject MainCamera;
-    [SerializeField]
-    public GameObject ItemCamera;
-    [SerializeField]
-    public GameObject DialogueCamera;
+  [SerializeField]
+  public GameObject Player;
+  private Actor PlayerActor;
 
-    private CinemachineVirtualCamera[] CameraArray = new CinemachineVirtualCamera[EActorState.GetNames(typeof(EActorState)).Length];
+  [SerializeField]
+  public GameObject WalkingCamera;
+  [SerializeField]
+  public GameObject ItemCamera;
+  [SerializeField]
+  public GameObject DialogueCamera;
 
-    private Actor PlayerActor;
+  private CinemachineVirtualCamera[] CameraArray = new CinemachineVirtualCamera[EActorState.GetNames(typeof(EActorState)).Length];
+  private EActorState activeCamera = EActorState.Walking;
 
-    public void setPlayerActor(Actor player)
+  public void Start()
+  {
+    PlayerActor = Player.GetComponent<Actor>();
+    activeCamera = PlayerActor.GetState();
+    
+    CinemachineVirtualCamera vcam;
+    vcam = WalkingCamera.GetComponent<CinemachineVirtualCamera>();
+    if (vcam)
     {
-        PlayerActor = player;
-        Transform playerTransform = player.GetTransform();
-
-        CinemachineVirtualCamera vcam;
- 
-        vcam = MainCamera.GetComponent<CinemachineVirtualCamera>();
-        if (vcam)
-        {
-            CameraArray[(int)EActorState.Walking] = vcam;
-        }
-
-        vcam = ItemCamera.GetComponent<CinemachineVirtualCamera>();
-        if (vcam)
-        {
-            CameraArray[(int)EActorState.ReceivingItem] = vcam;
-        }
-
-        vcam = DialogueCamera.GetComponent<CinemachineVirtualCamera>();
-        if (vcam)
-        {
-            CameraArray[(int)EActorState.InConversation] = vcam;
-        }
+      CameraArray[(int)EActorState.Walking] = vcam;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    vcam = ItemCamera.GetComponent<CinemachineVirtualCamera>();
+    if (vcam)
     {
-        Game.GInstance.SetCameraManager(this);
+      CameraArray[(int)EActorState.ReceivingItem] = vcam;
     }
 
-    void SwitchToCamera(EActorState state)
+    vcam = DialogueCamera.GetComponent<CinemachineVirtualCamera>();
+    if (vcam)
     {
-
+      CameraArray[(int)EActorState.InConversation] = vcam;
     }
+  }
+
+  void Update()
+  {
+    EActorState newState = PlayerActor.GetState();
+    if (newState != activeCamera)
+    {
+      //Switch camera to the new one
+    }
+  }
 }
