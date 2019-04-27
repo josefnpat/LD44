@@ -54,12 +54,12 @@ MonoBehaviour:
   facingDirection: 1
   accel: 1000
   maxSpeed: 20
-  frictionCoef: 0.85
+  frictionCoef: 0.75
   rotationSpeed: 0.15
   doesFloat: 1
   floatOffsetY: 1.53
   floatSpeed: 0.4
-  floatRadius: 0.5
+  floatRadius: 0.25
 --- !u!54 &3495412385151039854
 Rigidbody:
   m_ObjectHideFlags: 0
