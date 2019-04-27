@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: fart
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItem
-  name: fart
+  itemName: fart
   uiSprite: {fileID: 21300000, guid: f9fa114c0baf98043b48a63ea9b87041, type: 3}
   texture: {fileID: 2800000, guid: cdfca7f104131fa48940e0d2620ef4f7, type: 3}
