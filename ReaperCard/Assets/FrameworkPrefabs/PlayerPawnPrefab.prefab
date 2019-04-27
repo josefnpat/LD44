@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6372515887766400642}
   - component: {fileID: -3908449960633639354}
   - component: {fileID: 1696740596315132859}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerPawnPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,15 +51,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeftPlane: {fileID: 0}
   RightPlane: {fileID: 0}
+  currentVelocity: {x: 0, y: 0, z: 0}
   facingDirection: 1
   accel: 1000
   maxSpeed: 20
   frictionCoef: 0.75
   rotationSpeed: 0.15
+  jumpForce: 1500
   doesFloat: 1
   floatOffsetY: 1.53
   floatSpeed: 0.4
   floatRadius: 0.25
+  TempSphere: {fileID: 6187060485742518272, guid: 5adf0332a028a25429adb557f0b7633c,
+    type: 3}
 --- !u!54 &3495412385151039854
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -147,6 +151,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftPlane
       objectReference: {fileID: 0}
+    - target: {fileID: 5664883489164982731, guid: 565252da768c9014190d8424df04aab9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6634177918378446021, guid: 565252da768c9014190d8424df04aab9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -221,6 +230,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RightPlane
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664883489164982731, guid: 565252da768c9014190d8424df04aab9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6634177918378446021, guid: 565252da768c9014190d8424df04aab9,
         type: 3}

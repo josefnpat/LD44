@@ -27,11 +27,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!PlayerActor)
+        {
+            return;
+        }
 
         // Poll input
         Vector3 Move = Controls.GetXY();
         PlayerActor.AddMovementInput(Move, 1f);
-
+        
+        if(Controls.IsDown(EKey.Jump))
+        {
+            PlayerActor.TryJump();
+        }
     }
 
 

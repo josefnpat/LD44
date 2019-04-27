@@ -41,7 +41,7 @@ public class Actor : MonoBehaviour
 
     private EActorState CurrentState = EActorState.Walking;
     private Vector3 pendingMovement = new Vector3();
-    private Vector3 currentVelocity;
+    public Vector3 currentVelocity;
     public EFacingDirection facingDirection = EFacingDirection.Right;
 
     [Header("Movement Settings")]
@@ -49,6 +49,7 @@ public class Actor : MonoBehaviour
     public float maxSpeed = 10;
     public float frictionCoef = 0.5f;
     public float rotationSpeed = 0.25f;
+    public float jumpForce = 50;
 
     [Space(20)]
     [Header("Floating Settings")]
@@ -59,6 +60,9 @@ public class Actor : MonoBehaviour
 
     private float floorCheckSphereRadius = 0f;
 
+    [Header("Booyah")]
+    public GameObject TempSphere;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +72,7 @@ public class Actor : MonoBehaviour
         LeftPlane = transform.Find("LeftPlane").gameObject;
         RightPlane = transform.Find("RightPlane").gameObject;
 
+        floorCheckSphereRadius = capsule.radius;
         //transform.position += new Vector3(0, 10, 0);
 
         Game.GInstance.SetPlayerActor(this);
@@ -162,6 +167,7 @@ public class Actor : MonoBehaviour
         if (mag > maxSpeed)
         {
             currentVelocity = direction * maxSpeed;
+
         }
        
         body.MovePosition(transform.position + currentVelocity * dt);
@@ -171,10 +177,20 @@ public class Actor : MonoBehaviour
         pendingMovement = Vector3.zero;
     }
 
-    //public bool CanJump()
-    //{
-    //    if (currentVelocity.y < 0 && )
-    //}
+    public void TryJump()
+    {
+        Vector3 chkPos = transform.position;
+        chkPos.y -= capsule.bounds.extents.y;
+        Debug.Log(Physics.CheckSphere(chkPos, floorCheckSphereRadius, ~(1 << 8)));
+        //Instantiate(TempSphere, chkPos, new Quaternion());
+        if (Physics.CheckSphere(chkPos, floorCheckSphereRadius, ~(1 << 8)) && body.velocity.y <= 0)
+        {
+            Vector3 oldVel = body.velocity;
+            oldVel.y = 0;
+            body.velocity = oldVel;
+            body.AddForce(Vector3.up * jumpForce);
+        }
+    }
 
     public void SetState(EActorState NewState)
     {
