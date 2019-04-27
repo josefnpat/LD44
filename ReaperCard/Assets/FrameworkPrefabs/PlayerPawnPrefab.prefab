@@ -52,10 +52,14 @@ MonoBehaviour:
   LeftPlane: {fileID: 0}
   RightPlane: {fileID: 0}
   facingDirection: 1
-  accel: 200
-  maxSpeed: 200
-  frictionCoef: 0.5
+  accel: 1000
+  maxSpeed: 20
+  frictionCoef: 0.85
   rotationSpeed: 0.15
+  doesFloat: 1
+  floatOffsetY: 1.53
+  floatSpeed: 0.4
+  floatRadius: 0.5
 --- !u!54 &3495412385151039854
 Rigidbody:
   m_ObjectHideFlags: 0

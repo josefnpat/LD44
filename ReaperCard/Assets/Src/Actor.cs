@@ -45,10 +45,10 @@ public class Actor : MonoBehaviour
 
     [Space(20)]
     [Header("Floating Settings")]
-    public EDoesFloat DoesFloat = EDoesFloat.Floats;
-    public float FloatOffsetY = 1.53f;
-    public float FloatSpeed = 8;
-    public float FloatRadius = 1.5f;
+    public EDoesFloat doesFloat = EDoesFloat.Floats;
+    public float floatOffsetY = 1.53f;
+    public float floatSpeed = 8;
+    public float floatRadius = 1.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -71,15 +71,15 @@ public class Actor : MonoBehaviour
         ApplyVelocity(dt);
         UpdateFacing(dt);
 
-        if(DoesFloat == EDoesFloat.Floats)
+        if (doesFloat == EDoesFloat.Floats)
         {
             Vector3 offset = LeftPlane.transform.localPosition;
-            offset.y = Mathf.Sin(Time.time / 4) * 2;
+            offset.y = Mathf.Sin(Time.time / floatSpeed) * floatRadius + floatOffsetY;
             //print(y);
             LeftPlane.transform.localPosition = offset;
             RightPlane.transform.localPosition = offset;
         }
-        
+
     }
 
     // Queues up movement for the next movement update, preferably a unit vector
@@ -134,7 +134,19 @@ public class Actor : MonoBehaviour
 
     public void ApplyVelocity(float dt)
     {
-        currentVelocity += pendingMovement * accel * dt;
+        if(Mathf.Approximately(pendingMovement.magnitude, 0))
+        {
+            currentVelocity *= frictionCoef;
+            if (currentVelocity.magnitude < 0.01)
+            {
+                currentVelocity = Vector3.zero;
+            }
+        }
+        else
+        {
+            currentVelocity += pendingMovement * accel * dt;
+        }
+        
         float mag = currentVelocity.magnitude;
 
         Vector3 direction = currentVelocity.normalized;
@@ -145,11 +157,7 @@ public class Actor : MonoBehaviour
        
         body.MovePosition(transform.position + currentVelocity * dt);
 
-        currentVelocity *= frictionCoef;
-        if (currentVelocity.magnitude < 0.01)
-        {
-            currentVelocity = Vector3.zero;
-        }
+        
 
         pendingMovement = Vector3.zero;
     }
