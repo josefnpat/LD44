@@ -39,6 +39,7 @@ public class Actor : MonoBehaviour
     Rigidbody body;
     public GameObject LeftPlane;
     public GameObject RightPlane;
+    public GameObject PlaneContainer;
 
     // State vars
     private EActorState CurrentState = EActorState.Walking;
@@ -49,17 +50,17 @@ public class Actor : MonoBehaviour
 
     // Config settings
     [Header("Movement Settings")]
-    public float accel = 10;
-    public float maxSpeed = 10;
+    public float accel = 10f;
+    public float maxSpeed = 10f;
     public float frictionCoef = 0.5f;
     public float rotationSpeed = 0.25f;
-    public float jumpForce = 50;
+    public float jumpForce = 50f;
 
     [Space(20)]
     [Header("Floating Settings")]
     public EDoesFloat doesFloat = EDoesFloat.Floats;
     public float floatOffsetY = 1.53f;
-    public float floatSpeed = 8;
+    public float floatSpeed = 8f;
     public float floatRadius = 1.5f;
 
     private float floorCheckSphereRadius = 0f;
@@ -73,8 +74,10 @@ public class Actor : MonoBehaviour
         capsule = GetComponent<CapsuleCollider>();
         body = GetComponent<Rigidbody>();
 
-        LeftPlane = transform.Find("LeftPlane").gameObject;
-        RightPlane = transform.Find("RightPlane").gameObject;
+        PlaneContainer = transform.Find("PlaneContainer").gameObject;
+        LeftPlane = PlaneContainer.transform.Find("LeftPlane").gameObject;
+        RightPlane = PlaneContainer.transform.Find("RightPlane").gameObject;
+        
 
         floorCheckSphereRadius = capsule.radius;
         //transform.position += new Vector3(0, 10, 0);
@@ -108,7 +111,7 @@ public class Actor : MonoBehaviour
 
     public void UpdateFacing(float dt)
     {
-        float yaw = transform.rotation.eulerAngles.y;
+        float yaw = PlaneContainer.transform.localRotation.eulerAngles.y;
         if (currentVelocity.magnitude > 0)
         {
 
@@ -146,7 +149,7 @@ public class Actor : MonoBehaviour
             //{
             //    yaw = Mathf.Min(yaw + RotationSpeed * dt, 0);
             //}
-            transform.rotation = Quaternion.Euler(0f, yaw, 0f);
+            PlaneContainer.transform.localRotation = Quaternion.Euler(0f, yaw, 0f);
         //}
     }
 
