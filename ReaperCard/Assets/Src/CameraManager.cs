@@ -5,8 +5,11 @@ using Cinemachine;
 
 public class CameraManager : MonoBehaviour
 {
+    [SerializeField]
     public GameObject MainCamera;
+    [SerializeField]
     public GameObject ItemCamera;
+    [SerializeField]
     public GameObject DialogueCamera;
 
     private CinemachineVirtualCamera[] CameraArray = new CinemachineVirtualCamera[EActorState.GetNames(typeof(EActorState)).Length];
