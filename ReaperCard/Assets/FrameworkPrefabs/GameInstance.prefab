@@ -47,5 +47,6 @@ MonoBehaviour:
     type: 3}
   ControllerPrefab: {fileID: 5353111764765976188, guid: 63c2089bb611504449e3873d879dc28c,
     type: 3}
-  PlayerActor: {fileID: 0}
-  Controller: {fileID: 0}
+  CameraPrefab: {fileID: 7123632869890566742, guid: b92cc895aa502d54ca1633aa89e10836,
+    type: 3}
+  StartLocation: {x: 0, y: 0, z: 0}
