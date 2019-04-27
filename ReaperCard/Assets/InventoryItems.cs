@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Inventory Item", menuName = "Inventory Item")]
 public class InventoryItem : ScriptableObject {
-    public string name;
+    public string itemName;
     public Sprite uiSprite;
     public Texture2D texture;
 
