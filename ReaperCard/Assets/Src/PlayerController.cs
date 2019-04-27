@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         Controls = new InputWrapper();
 
-        Game.GInstance.SetPlayerController(this);
+        //Game.GInstance.SetPlayerController(this);
     }
 
     // Update is called once per frame

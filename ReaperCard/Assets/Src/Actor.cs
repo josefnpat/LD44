@@ -34,16 +34,20 @@ public enum EActorState
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
 public class Actor : MonoBehaviour
 {
+    // References to own components
     CapsuleCollider capsule;
     Rigidbody body;
     public GameObject LeftPlane;
     public GameObject RightPlane;
 
+    // State vars
     private EActorState CurrentState = EActorState.Walking;
     private Vector3 pendingMovement = new Vector3();
     public Vector3 currentVelocity;
     public EFacingDirection facingDirection = EFacingDirection.Right;
 
+
+    // Config settings
     [Header("Movement Settings")]
     public float accel = 10;
     public float maxSpeed = 10;
@@ -75,7 +79,7 @@ public class Actor : MonoBehaviour
         floorCheckSphereRadius = capsule.radius;
         //transform.position += new Vector3(0, 10, 0);
 
-        Game.GInstance.SetPlayerActor(this);
+        //Game.GInstance.SetPlayerActor(this);
     }
 
     // Update is called once per frame
