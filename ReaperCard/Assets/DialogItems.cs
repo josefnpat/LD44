@@ -233,7 +233,8 @@ public class DialogDie : IDialogItem {
     }
 
     public void enter(DialogManager dialogManager) {
-        // TODO: tell dialogManager.npc to die
+        // TODO: Animation? Sound effect?
+        UnityEngine.Object.Destroy(dialogManager.npc);
     }
 
     public IDialogItem next(DialogManager dialogManager) {
