@@ -45,12 +45,14 @@ public class DialogManagerUI : MonoBehaviour {
 
 		Debug.Assert(options.Count <= Options.Length);
 		Debug.Assert(OptionsButtons.Length == Options.Length);
-		for(var i = 0; i < options.Count; ++i) {
-			OptionsButtons[i].SetActive(true);
-			Options[i].GetComponent<Text>().text = options[i];
-		}
-		for(var i = options.Count; i < Options.Length; ++i) {
+		var optionOffset = Options.Length - options.Count; // make sure we start from the bottom;
+		for(var i = 0; i < optionOffset; ++i) {
 			OptionsButtons[i].SetActive(false);
+		}
+		for(var i = 0; i < options.Count; ++i) {
+			var optIdx = optionOffset + i;
+			OptionsButtons[optIdx].SetActive(true);
+			Options[optIdx].GetComponent<Text>().text = options[i];
 		}
 	}
 
