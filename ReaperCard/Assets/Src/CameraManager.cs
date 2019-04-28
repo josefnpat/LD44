@@ -8,6 +8,7 @@ public class CameraManager : MonoBehaviour
   [SerializeField]
   public GameObject Player;
   private Actor PlayerActor;
+  public GameObject FocusObject; // Additional actor to focus on when the player is conversing with them
 
   [SerializeField]
   public GameObject WalkingCamera;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerComponent : MonoBehaviour
 {
     public GameObject InteractObj;
+    public CameraManager Camera;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,8 @@ public class PlayerComponent : MonoBehaviour
     public void TrySetInteractObj(GameObject Obj)
     {
         InteractObj = Obj;
+        Camera.FocusObject = Obj.gameObject ;
+
     }
 
     public void TryClearInteractObj(GameObject Obj)
@@ -28,6 +31,7 @@ public class PlayerComponent : MonoBehaviour
         if(InteractObj && InteractObj == Obj)
         {
             InteractObj = null;
+            Camera.FocusObject = null;
         }
     }
 }
