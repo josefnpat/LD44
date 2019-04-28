@@ -24,7 +24,7 @@ public class CameraManager : MonoBehaviour
   {
     PlayerActor = Player.GetComponent<Actor>();
     activeCamera = PlayerActor.GetState();
-    
+
     CinemachineVirtualCamera vcam;
     vcam = WalkingCamera.GetComponent<CinemachineVirtualCamera>();
     if (vcam)
@@ -43,6 +43,17 @@ public class CameraManager : MonoBehaviour
     {
       CameraArray[(int)EActorState.InConversation] = vcam;
     }
+  }
+
+  void onStartDialog(GameObject player, GameObject npc)
+  {
+    CinemachineVirtualCamera DialogCamera = CameraArray[(int)EActorState.InConversation];
+    //DialogCamera.
+  }
+
+  void onEndDialog()
+  {
+
   }
 
   void Update()
