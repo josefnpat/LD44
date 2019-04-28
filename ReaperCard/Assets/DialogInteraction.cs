@@ -11,7 +11,7 @@ public class DialogInteraction : MonoBehaviour
         Interact(); // TESTING
     }
 
-    void Interact() {
+    public void Interact() {
         dialogManager.GetComponent<DialogManager>().setDialog(dialog.getRoot());
     }
 }

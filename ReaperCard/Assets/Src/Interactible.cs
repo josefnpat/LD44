@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(CapsuleCollider), typeof(Rigidbody))]
+[RequireComponent(typeof(SphereCollider))]
 public class Interactible : MonoBehaviour
 {
-    CapsuleCollider capsule;
+    SphereCollider interactionArea;
 
     public UnityEvent Interact;
 
     // Start is called before the first frame update
     void Start()
     {
-        capsule = GetComponent<CapsuleCollider>();
+        interactionArea = GetComponent<SphereCollider>();
 
     }
 
