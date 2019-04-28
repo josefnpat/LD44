@@ -6,6 +6,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(SphereCollider))]
 public class Interactible : MonoBehaviour
 {
+    public GameObject DialogReadyIcon;
     SphereCollider interactionArea;
 
     public UnityEvent Interact;
@@ -17,18 +18,10 @@ public class Interactible : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Interact == null)
-        {
-            Interact = new UnityEvent();
-        }
-        
-    }
-
     private void OnTriggerEnter(Collider Other)
     {
+        DialogReadyIcon.SetActive(true);
+
         PlayerComponent player = Other.GetComponent<PlayerComponent>();
         if(player)
         {
@@ -38,6 +31,8 @@ public class Interactible : MonoBehaviour
 
     private void OnTriggerExit(Collider Other)
     {
+        DialogReadyIcon.SetActive(false);
+
         PlayerComponent player = Other.GetComponent<PlayerComponent>();
         if (player)
         {
