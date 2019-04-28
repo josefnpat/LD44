@@ -81,6 +81,14 @@ public class DialogManagerUI : MonoBehaviour {
 		EventText.GetComponent<Text>().text = text;
 	}
 
+	public void OptionButtonPressed(int index) {
+		DisableAllPanels();
+		// hook this up into the Dialog system as the callback
+		Debug.Log("You pressed button " + index);
+		Debug.Log("Text: " + currentChoices [index].text);
+		Debug.Log("Next: " + currentChoices [index].next);
+	}
+
 	public void ExampleSetOptions() {
 		Option option0 = new Option();
 		option0.text = "Let's Go!!";
