@@ -10,7 +10,7 @@ public class PlayerComponent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameObject.GetComponent<Actor>().jumpHax = false;
     }
 
     // Update is called once per frame
@@ -21,8 +21,11 @@ public class PlayerComponent : MonoBehaviour
 
     public void TrySetInteractObj(GameObject Obj)
     {
-        InteractObj = Obj;
-        Camera.FocusObject = Obj.gameObject ;
+        if(InteractObj == null || (transform.position - Obj.transform.position).magnitude < ((transform.position - InteractObj.transform.position).magnitude))
+        {
+            InteractObj = Obj;
+        }
+        //Camera.FocusObject = (GameObject)Obj.gameObject;
 
     }
 
@@ -31,7 +34,14 @@ public class PlayerComponent : MonoBehaviour
         if(InteractObj && InteractObj == Obj)
         {
             InteractObj = null;
-            Camera.FocusObject = null;
+            //Camera.FocusObject = null;
         }
+    }
+
+    public GameObject prefab;
+    public void TestFunc()
+    {
+        Vector3 pos = new Vector3(Random.Range(-32f, 32f), 100, Random.Range(-32f, 32f));
+        Instantiate(prefab, pos, new Quaternion());
     }
 }

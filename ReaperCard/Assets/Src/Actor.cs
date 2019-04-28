@@ -62,6 +62,7 @@ public class Actor : MonoBehaviour
     public float floatOffsetY = 1.53f;
     public float floatSpeed = 8f;
     public float floatRadius = 1.5f;
+    private float floatTimeOffset = 0f;
 
     private float floorCheckSphereRadius = 0f;
 
@@ -80,10 +81,14 @@ public class Actor : MonoBehaviour
         
 
         floorCheckSphereRadius = capsule.radius;
+
+        floatTimeOffset = Random.Range(0, 100);
         //transform.position += new Vector3(0, 10, 0);
 
         //Game.GInstance.SetPlayerActor(this);
     }
+
+   public bool jumpHax = true;
 
     // Update is called once per frame
     void Update()
@@ -95,12 +100,19 @@ public class Actor : MonoBehaviour
         if (doesFloat == EDoesFloat.Floats)
         {
             Vector3 offset = LeftPlane.transform.localPosition;
-            offset.y = Mathf.Sin(Time.time / floatSpeed) * floatRadius + floatOffsetY;
+            offset.y = Mathf.Sin(Time.time / floatSpeed + floatTimeOffset) * floatRadius + floatOffsetY;
             //print(y);
             LeftPlane.transform.localPosition = offset;
             RightPlane.transform.localPosition = offset;
         }
 
+        if(jumpHax)
+        {
+            if(Random.value > 0.9)
+            {
+                TryJump();
+            }
+        }
     }
 
     // Queues up movement for the next movement update, preferably a unit vector
