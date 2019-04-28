@@ -5,6 +5,8 @@ using UnityEngine;
 public class FinalExitInteraction : MonoBehaviour
 {
     public GameObject dialogManager;
+    private GameObject player;
+    private bool waitingForDialogManager;
 
     void Interact(GameObject player) {
         var inventory = player.GetComponent<Inventory>();
@@ -15,6 +17,16 @@ public class FinalExitInteraction : MonoBehaviour
             Destroy(door);
         } else {
             dialogManager.GetComponent<DialogManagerUI>().SetEvent("Your work is not done yet!");
+            player.GetComponent<Actor>().SetState(EActorState.InConversation);
+            this.player = player;
+            waitingForDialogManager = true;
+        }
+    }
+
+    void Update() {
+        if(waitingForDialogManager && dialogManager.GetComponent<DialogManagerUI>().ReadyForNext()) {
+            player.GetComponent<Actor>().SetState(EActorState.Walking);
+            waitingForDialogManager = false;
         }
     }
 }

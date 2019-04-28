@@ -71,7 +71,7 @@ public class DialogManagerUI : MonoBehaviour {
 	}
 
 	// Event Text, e.g. "You picked up Old Frog Card!"
-	public void SetEvent(string text){
+	public void SetEvent(string text) {
 		readyForNext = false;
 		DisableAllPanels();
 		EventPanel.SetActive(true);
