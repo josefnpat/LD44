@@ -15,21 +15,24 @@ public class Interactible : MonoBehaviour
         interactionArea = GetComponent<SphereCollider>();
     }
 
-    public void doInteraction(GameObject player) {
+    public void doInteraction(GameObject player)
+    {
         SendMessage("Interact", player);
     }
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other)
+    {
         readyIcon.SetActive(true);
 
         Interactor interactor = other.GetComponent<Interactor>();
-        if(interactor) interactor.setInteractable(this.gameObject);
+        if (interactor) interactor.setInteractable(this.gameObject);
     }
 
-    private void OnTriggerExit(Collider other) {
+    private void OnTriggerExit(Collider other)
+    {
         readyIcon.SetActive(false);
 
         Interactor interactor = other.GetComponent<Interactor>();
-        if(interactor) interactor.clearInteractable(this.gameObject);
+        if (interactor) interactor.clearInteractable(this.gameObject);
     }
 }

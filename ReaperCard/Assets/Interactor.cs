@@ -6,28 +6,39 @@ public class Interactor : MonoBehaviour
 {
     [HideInInspector]
     private InputWrapper controls = new InputWrapper();
-    private GameObject interactable;
+    private HashSet<GameObject> interactables = new HashSet<GameObject>();
 
-    public void setInteractable(GameObject obj) {
-        if(interactable != null) {
-            var dist = (transform.position - obj.transform.position).magnitude;
-            var newDist = (transform.position - interactable.transform.position).magnitude;
-            bool isCloser = dist < newDist;
-            if(!isCloser)
-                return;
-        }
-        interactable = obj;
+    public void setInteractable(GameObject obj)
+    {
+        interactables.Add(obj);
     }
 
-    public void clearInteractable(GameObject obj) {
-        if(interactable == obj) interactable = null;
+    public void clearInteractable(GameObject obj)
+    {
+        interactables.Remove(obj);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(interactable != null && controls.IsDown(EKey.Confirm)) {
-            interactable.GetComponent<Interactible>().doInteraction(this.gameObject);
+        if (interactables.Count > 0 && controls.IsDown(EKey.Confirm))
+        {
+            GameObject bestMatch = null;
+            var bestDistance = Mathf.Infinity;
+            foreach (var interactable in interactables)
+            {
+                var dist = (transform.position - interactable.transform.position).magnitude;
+                if (dist < bestDistance)
+                {
+                    bestMatch = interactable;
+                    bestDistance = dist;
+                }
+            }
+
+            if (bestMatch != null)
+            {
+                bestMatch.GetComponent<Interactible>().doInteraction(this.gameObject);
+            }
         }
     }
 }
