@@ -20,6 +20,7 @@ public class DialogManagerUI : MonoBehaviour {
 	public GameObject EventText;
 
 	private bool readyForNext = true;
+	private int optionOffset = 0;
 
 	private void Start() {
 		OptionText.GetComponent<Text>().text = "";
@@ -45,7 +46,7 @@ public class DialogManagerUI : MonoBehaviour {
 
 		Debug.Assert(options.Count <= Options.Length);
 		Debug.Assert(OptionsButtons.Length == Options.Length);
-		var optionOffset = Options.Length - options.Count; // make sure we start from the bottom;
+		optionOffset = Options.Length - options.Count; // make sure we start from the bottom;
 		for(var i = 0; i < optionOffset; ++i) {
 			OptionsButtons[i].SetActive(false);
 		}
@@ -95,7 +96,7 @@ public class DialogManagerUI : MonoBehaviour {
 
 	// null is valid response
 	public int GetCurrentSelectedOption() {
-		return selectedOption;
+		return selectedOption - optionOffset;
 	}
 
 
