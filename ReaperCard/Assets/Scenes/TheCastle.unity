@@ -2559,6 +2559,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 43517410469cfcc43ac9a1b976ca1f2f,
         type: 2}
+    - target: {fileID: 3605326352812724682, guid: aa95fba459e792747b354451666e5c35,
+        type: 3}
+      propertyPath: closedMessage
+      value: There is still work left to do!
+      objectReference: {fileID: 0}
     - target: {fileID: 48236911278689617, guid: aa95fba459e792747b354451666e5c35,
         type: 3}
       propertyPath: m_Name
