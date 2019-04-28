@@ -9,31 +9,18 @@ public class PlayerController : MonoBehaviour
     public InputWrapper Controls;
     public PlayerComponent PlayerComp;
 
-    public Actor PlayerActor;
-    //public Actor PlayerActor
-    //{
-    //    get;
-
-    //    set;
-    //}
+    private Actor PlayerActor;
 
     // Start is called before the first frame update
     void Start()
     {
+        PlayerActor = gameObject.GetComponent<Actor>();
         Controls = new InputWrapper();
-
-        //Game.GInstance.SetPlayerController(this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!PlayerActor)
-        {
-            return;
-        }
-
-        // Poll input
         Vector3 Move = Controls.GetXY();
         PlayerActor.AddMovementInput(Move, 1f);
         
