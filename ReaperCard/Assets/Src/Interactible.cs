@@ -6,7 +6,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(SphereCollider))]
 public class Interactible : MonoBehaviour
 {
-    public GameObject DialogReadyIcon;
+    public GameObject readyIcon;
     SphereCollider interactionArea;
 
     // Start is called before the first frame update
@@ -20,14 +20,14 @@ public class Interactible : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        DialogReadyIcon.SetActive(true);
+        readyIcon.SetActive(true);
 
         Interactor interactor = other.GetComponent<Interactor>();
         if(interactor) interactor.setInteractable(this.gameObject);
     }
 
     private void OnTriggerExit(Collider other) {
-        DialogReadyIcon.SetActive(false);
+        readyIcon.SetActive(false);
 
         Interactor interactor = other.GetComponent<Interactor>();
         if(interactor) interactor.clearInteractable(this.gameObject);

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5c7453400db2ef46b131f1e03255383, type: 3}
-  m_Name: New Dialog
+  m_Name: oldfrog
   m_EditorClassIdentifier: 
   dialogName: oldfrog
   jsonFile: {fileID: 4900000, guid: 16ad9d366ed280240acad29e36c1d2c4, type: 3}
