@@ -133,7 +133,7 @@ public class DialogText : IDialogItem {
 
     public void enter(DialogManager dialogManager) {
         var dialogManagerUI = dialogManager.GetComponent<DialogManagerUI>();
-		dialogManagerUI.SetText(text, "BUTFACE");
+		dialogManagerUI.SetText(text, dialogManager.npc.name);
 	}
 
     public IDialogItem next(DialogManager dialogManager) {
