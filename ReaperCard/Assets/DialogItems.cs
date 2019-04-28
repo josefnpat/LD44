@@ -125,17 +125,18 @@ public class DialogText : IDialogItem {
 
     public void enter(DialogManager dialogManager, DialogManagerUI dialogManagerUI) {
         Debug.Log("dialog - show text: " + text);
-        // spawn ui elements
-    }
+		// spawn ui elements
+		dialogManagerUI.SetText(text, "BUTFACE");
+	}
 
     public void exit(DialogManager dialogManager) {
         // remove ui elements
     }
 
     public IDialogItem next(DialogManager dialogManager) {
-        //var controls = dialogManager.player.GetComponent<PlayerController>().Controls;
-        //if(true || controls.IsDown(EKey.Confirm)) return this.nextItem;
-        return this;
+		//var controls = dialogManager.player.GetComponent<PlayerController>().Controls;
+		//if(true || controls.IsDown(EKey.Confirm)) return this.nextItem;
+		return this;
     }
 };
 

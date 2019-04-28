@@ -22,6 +22,7 @@ public class DialogManager : MonoBehaviour {
 			Debug.LogError("dialogManagerUI has not been set on the Dialog Manager.");
 		} else {
 			_dialogManagerUI = dialogManagerUI.GetComponent<DialogManagerUI>();
+			Debug.Assert(_dialogManagerUI, "Cannot find DialogManagerUI component.");
 		}
 		RunInitDialog();
 	}
@@ -32,6 +33,12 @@ public class DialogManager : MonoBehaviour {
 		}
 	}
 
+	public void Update() {
+		if(currentItem.next(this) != null && _dialogManagerUI.ReadyForNext()){
+			setDialog(currentItem.next(this));
+		}
+	}
+
 	public void setDialog(IDialogItem item) {
 		if (currentItem == null)
 		{
@@ -39,12 +46,12 @@ public class DialogManager : MonoBehaviour {
 				player.GetComponent<Actor>().SetState(EActorState.InConversation); // can't move
 			}
 			currentItem = item;
+			item.enter(this, _dialogManagerUI);
 		}
 
 		var next = currentItem.next(this);
 		if(next != null && next != currentItem)
 		{
-			Debug.Log("ENTER");
 			currentItem.exit(this);
 			next.enter(this, _dialogManagerUI);
 			currentItem = next;

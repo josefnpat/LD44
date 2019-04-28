@@ -107,6 +107,7 @@ public class DialogManagerUI : MonoBehaviour {
 	}
 
 	public bool ReadyForNext() {
+		Debug.Log("checking ready for next");
 		return readyForNext;
 	}
 
