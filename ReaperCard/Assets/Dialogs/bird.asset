@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5c7453400db2ef46b131f1e03255383, type: 3}
+  m_Name: bird
+  m_EditorClassIdentifier: 
+  dialogName: bird
+  jsonFile: {fileID: 4900000, guid: ad9230133b3b22249944f8b26f175c0a, type: 3}

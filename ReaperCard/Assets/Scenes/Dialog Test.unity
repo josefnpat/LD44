@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 936979615}
   - component: {fileID: 936979614}
   m_Layer: 0
-  m_Name: NPC
+  m_Name: Bird
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogManager: {fileID: 2050534974}
-  dialog: {fileID: 11400000, guid: fae0ed8376dbc794d81e4dd06ec4efa5, type: 2}
+  dialog: {fileID: 11400000, guid: c03950c7a7a514f4992b612e44656f0c, type: 2}
 --- !u!65 &936979615
 BoxCollider:
   m_ObjectHideFlags: 0
