@@ -15,7 +15,8 @@ public class DialogManagerUI : MonoBehaviour {
 	public GameObject OptionText;
 	public GameObject [] Options;
 	public GameObject [] OptionsButtons;
-	private Option [] currentChoices;
+	private Option [] currentOptions = new Option [4];
+	private Option selectedOption;
 
 	public GameObject TextPanel;
 	public GameObject TextName;
@@ -51,14 +52,17 @@ public class DialogManagerUI : MonoBehaviour {
 		OptionsButtons [3].SetActive(option3 != null);
 
 		Options [0].GetComponent<Text>().text = option0.text;
+		currentOptions [0] = option0;
 		if (option1 != null) {
-
+			currentOptions [1] = option1;
 			Options [1].GetComponent<Text>().text = option1.text;
 		}
 		if (option2 != null) {
+			currentOptions [2] = option1;
 			Options [2].GetComponent<Text>().text = option2.text;
 		}
 		if (option3 != null) {
+			currentOptions [3] = option1;
 			Options [3].GetComponent<Text>().text = option3.text;
 		}
 	}
@@ -70,6 +74,7 @@ public class DialogManagerUI : MonoBehaviour {
 		OptionText.GetComponent<Text>().text = text;
 		TextText.GetComponent<Text>().text = text;
 		if(name != null){
+			OptionName.GetComponent<Text>().text = name;
 			TextName.GetComponent<Text>().text = name;
 		}
 	}
@@ -85,8 +90,15 @@ public class DialogManagerUI : MonoBehaviour {
 		DisableAllPanels();
 		// hook this up into the Dialog system as the callback
 		Debug.Log("You pressed button " + index);
-		Debug.Log("Text: " + currentChoices [index].text);
-		Debug.Log("Next: " + currentChoices [index].next);
+		Debug.Log("Text: " + currentOptions [index].text);
+		Debug.Log("Next: " + currentOptions [index].next);
+
+		selectedOption = currentOptions [index];
+	}
+
+	// null is valid response
+	public Option GetCurrentSelectedOption() {
+		return selectedOption;
 	}
 
 	public void ExampleSetOptions() {
