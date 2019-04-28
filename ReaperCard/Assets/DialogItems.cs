@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface IDialogItem {
-    void enter(DialogManager dialogManager);
+    void enter(DialogManager dialogManager, DialogManagerUI dialogManagerUI);
     void exit(DialogManager dialogManager);
     IDialogItem next(DialogManager dialogManager);
 };
@@ -22,7 +22,7 @@ public class DialogBranch : IDialogItem {
         this.defaultBranch = defaultBranch;
     }
 
-    public void enter(DialogManager dialogManager) {
+    public void enter(DialogManager dialogManager, DialogManagerUI dialogManagerUI) {
         Debug.Log("dialog: branch on " + varName);
     }
 
@@ -67,7 +67,7 @@ public class DialogChoice : IDialogItem {
         this.choices = choices;
     }
 
-    public void enter(DialogManager dialogManager) {
+    public void enter(DialogManager dialogManager, DialogManagerUI dialogManagerUI) {
         var choiceText = new List<string>();
         Debug.Log("dialog - choices: " + string.Join(", ", choiceText));
         // create ui items
@@ -98,7 +98,7 @@ public class DialogSetVar : IDialogItem {
         this.nextItem = nextItem;
     }
 
-    public void enter(DialogManager dialogManager) {
+    public void enter(DialogManager dialogManager, DialogManagerUI dialogManagerUI) {
         Debug.Log("dialog - set var " + variable + " to " + value);
         dialogManager.gameVars[variable] = value;
     }
@@ -123,7 +123,7 @@ public class DialogText : IDialogItem {
         this.nextItem = nextItem;
     }
 
-    public void enter(DialogManager dialogManager) {
+    public void enter(DialogManager dialogManager, DialogManagerUI dialogManagerUI) {
         Debug.Log("dialog - show text: " + text);
         // spawn ui elements
     }
@@ -133,8 +133,8 @@ public class DialogText : IDialogItem {
     }
 
     public IDialogItem next(DialogManager dialogManager) {
-        var controls = dialogManager.player.GetComponent<PlayerController>().Controls;
-        if(true || controls.IsDown(EKey.Confirm)) return this.nextItem;
+        //var controls = dialogManager.player.GetComponent<PlayerController>().Controls;
+        //if(true || controls.IsDown(EKey.Confirm)) return this.nextItem;
         return this;
     }
 };
@@ -151,7 +151,7 @@ public class DialogGiveItem : IDialogItem {
         this.nextItem = nextItem;
     }
 
-    public void enter(DialogManager dialogManager) {
+    public void enter(DialogManager dialogManager, DialogManagerUI dialogManagerUI) {
         Debug.Log("dialog - give item " + itemName);
         var inventory = dialogManager.player.GetComponent<Inventory>();
         inventory.addItem(itemName);
@@ -176,7 +176,7 @@ public class DialogTakeItem : IDialogItem {
     public void setNext(IDialogItem nextItem) {
         this.nextItem = nextItem;
     }
-    public void enter(DialogManager dialogManager) {
+    public void enter(DialogManager dialogManager, DialogManagerUI dialogManagerUI) {
         Debug.Log("dialog - take item " + itemName);
         var inventory = dialogManager.player.GetComponent<Inventory>();
         inventory.removeItem(itemName);
@@ -202,7 +202,7 @@ public class DialogAudio : IDialogItem {
         this.nextItem = nextItem;
     }
 
-    public void enter(DialogManager dialogManager) {
+    public void enter(DialogManager dialogManager, DialogManagerUI dialogManagerUI) {
         Debug.Log("dialog - play audio " + soundFilename);
         // TODO: play sound
     }
@@ -222,7 +222,7 @@ public class DialogDie : IDialogItem {
         this.nextItem = nextItem;
     }
 
-    public void enter(DialogManager dialogManager) {
+    public void enter(DialogManager dialogManager, DialogManagerUI dialogManagerUI) {
         Debug.Log("dialog - die");
         // TODO: have DialogManager.setDialog take a convo partner as an argument, then send it an event here?
     }
@@ -237,7 +237,7 @@ public class DialogDie : IDialogItem {
 };
 
 public class DialogEnd : IDialogItem {
-    public void enter(DialogManager dialogManager) {
+    public void enter(DialogManager dialogManager, DialogManagerUI dialogManagerUI) {
         Debug.Log("dialog - end");
     }
     public void exit(DialogManager dialogManager) {}

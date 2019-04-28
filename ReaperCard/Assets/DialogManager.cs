@@ -3,33 +3,61 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DialogManager : MonoBehaviour {
-    public GameObject player;
-    public InputWrapper controls;
-    public Dictionary<string, string> gameVars = new Dictionary<string, string>();
+	public GameObject dialogManagerUI;
+	private DialogManagerUI _dialogManagerUI;
+	public GameObject player;
+	public InputWrapper controls;
+	public Dictionary<string, string> gameVars = new Dictionary<string, string>();
 
-    private IDialogItem currentItem;
+	public Dialog initDialog;
 
-    public void setDialog(IDialogItem item) {
-        if (currentItem == null)
-        {
-            player.GetComponent<Actor>().SetState(EActorState.InConversation); // can't move
-            currentItem = item;
-        }
+	private IDialogItem currentItem;
 
-        var next = currentItem.next(this);
-        if(next != null && next != currentItem)
-        {
-            currentItem.exit(this);
-            next.enter(this);
-            currentItem = next;
-            next = currentItem.next(this);
-        }
-        else
-        {
-            currentItem.exit(this);
-            currentItem = null;
-            player.GetComponent<Actor>().SetState(EActorState.Walking);
-        }
-    }
+
+	private void Start() {
+		if (player == null) {
+			Debug.LogWarning("Player has not been set on the Dialog Manager.");
+		}
+		if (dialogManagerUI == null) {
+			Debug.LogError("dialogManagerUI has not been set on the Dialog Manager.");
+		} else {
+			_dialogManagerUI = dialogManagerUI.GetComponent<DialogManagerUI>();
+		}
+		RunInitDialog();
+	}
+
+	public void RunInitDialog() {
+		if (initDialog != null) {
+			setDialog(initDialog.getRoot());
+		}
+	}
+
+	public void setDialog(IDialogItem item) {
+		if (currentItem == null)
+		{
+			if (player != null) {
+				player.GetComponent<Actor>().SetState(EActorState.InConversation); // can't move
+			}
+			currentItem = item;
+		}
+
+		var next = currentItem.next(this);
+		if(next != null && next != currentItem)
+		{
+			Debug.Log("ENTER");
+			currentItem.exit(this);
+			next.enter(this, _dialogManagerUI);
+			currentItem = next;
+			next = currentItem.next(this);
+		}
+		else
+		{
+			currentItem.exit(this);
+			currentItem = null;
+			if (player != null) {
+				player.GetComponent<Actor>().SetState(EActorState.Walking);
+			}
+		}
+	}
 };
 
