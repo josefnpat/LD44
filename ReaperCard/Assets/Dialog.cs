@@ -75,9 +75,9 @@ public class Dialog : ScriptableObject {
         return item;
     }
 
-    IDialogItem parseAudioNode(JSONNode jsonData) {
+    IDialogItem parseSfxNode(JSONNode jsonData) {
         string name = jsonData["name"];
-        var item = cacheItem(jsonData["id"], new DialogAudio(name.Substring("audio:".Length)));
+        var item = cacheItem(jsonData["id"], new DialogSfx(name.Substring("sfx:".Length)));
         item.setNext(getNode(jsonData["next"]));
         return item;
     }
@@ -122,8 +122,8 @@ public class Dialog : ScriptableObject {
                     return parseGiveNode(jsonData);
                 } else if(name.StartsWith("removeinv:")) {
                     return parseTakeNode(jsonData);
-                } else if(name.StartsWith("audio:")) {
-                    return parseAudioNode(jsonData);
+                } else if(name.StartsWith("sfx:")) {
+                    return parseSfxNode(jsonData);
                 } else if(name.StartsWith("music:")) {
                     return parseMusicNode(jsonData);
                 } else if(name == "die") {

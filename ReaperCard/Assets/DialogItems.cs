@@ -200,11 +200,11 @@ public class DialogTakeItem : IDialogItem {
     }
 };
 
-public class DialogAudio : IDialogItem {
+public class DialogSfx : IDialogItem {
     private string soundFilename;
     private IDialogItem nextItem;
 
-    public DialogAudio(string soundFilename) {
+    public DialogSfx(string soundFilename) {
         this.soundFilename = soundFilename;
     }
 
