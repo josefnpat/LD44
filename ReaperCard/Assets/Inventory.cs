@@ -59,7 +59,7 @@ public class Inventory : MonoBehaviour
     private int getItemIndex(string name)
     {
         var idx = items.FindIndex(entry => entry.item.itemName == name);
-        Debug.Assert(idx >= 0);
+        Debug.Assert(idx >= 0, "Could not find item with name " + name);
         return idx;
     }
 }
