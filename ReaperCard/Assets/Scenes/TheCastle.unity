@@ -579,9 +579,9 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: e9951b9f3b4a9654e9ce21ea2e27b56c, type: 2}
     has: 0
   - item: {fileID: 11400000, guid: b046d115e3697ac4281fb4c30eb1d2de, type: 2}
-    has: 0
+    has: 1
   - item: {fileID: 11400000, guid: cd6dcba9c704cde4eaf7a19a85fa718b, type: 2}
-    has: 0
+    has: 1
   - item: {fileID: 11400000, guid: d2528f11d79fd5d4183f3da26169caed, type: 2}
     has: 0
   - item: {fileID: 11400000, guid: 9dd70e0edc054fd478bed0f97306b2cd, type: 2}
@@ -593,7 +593,7 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: bd9e7838b6bdcdd4292a71095509437f, type: 2}
     has: 0
   - item: {fileID: 11400000, guid: 43517410469cfcc43ac9a1b976ca1f2f, type: 2}
-    has: 0
+    has: 1
   itemAnimPrefab: {fileID: 5257846634853675266, guid: 2360b86822fd13e429764b7e6c672422,
     type: 3}
 --- !u!114 &206035128
@@ -855,6 +855,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 55acfd85eddff524b96f65fa411a1f95,
         type: 2}
+    - target: {fileID: 5083970229392542432, guid: 60c80fa87891a8e47bdf5b4e74728712,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4824a422de6fbef49aa332eecf47cb9f, type: 2}
     - target: {fileID: 3006609251130042638, guid: 60c80fa87891a8e47bdf5b4e74728712,
         type: 3}
       propertyPath: m_Enabled
@@ -1845,16 +1850,6 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 18
       objectReference: {fileID: 0}
-    - target: {fileID: 5435486876083914524, guid: 9149060acb3bd44478e7004f0d95f940,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -230
-      objectReference: {fileID: 0}
-    - target: {fileID: 5435486876083914524, guid: 9149060acb3bd44478e7004f0d95f940,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1752678431900447371, guid: 9149060acb3bd44478e7004f0d95f940,
         type: 3}
       propertyPath: m_Color.r
@@ -1920,6 +1915,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.a
       value: 0.078431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 5435486876083914524, guid: 9149060acb3bd44478e7004f0d95f940,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -230
+      objectReference: {fileID: 0}
+    - target: {fileID: 5435486876083914524, guid: 9149060acb3bd44478e7004f0d95f940,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2283725888995796711, guid: 9149060acb3bd44478e7004f0d95f940,
         type: 3}
@@ -2627,7 +2632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 044300c8a41cfde4f9caa9baacbe1611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogManager: {fileID: 586715420}
+  dialogManager: {fileID: 0}
 --- !u!114 &2124544472
 MonoBehaviour:
   m_ObjectHideFlags: 0
