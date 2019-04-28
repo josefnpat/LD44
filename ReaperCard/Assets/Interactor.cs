@@ -27,6 +27,7 @@ public class Interactor : MonoBehaviour
             var bestDistance = Mathf.Infinity;
             foreach (var interactable in interactables)
             {
+                if(interactable == null) continue;
                 var dist = (transform.position - interactable.transform.position).magnitude;
                 if (dist < bestDistance)
                 {
@@ -39,6 +40,7 @@ public class Interactor : MonoBehaviour
             {
                 bestMatch.GetComponent<Interactible>().doInteraction(this.gameObject);
             }
+            interactables.RemoveWhere(obj => obj == null);
         }
     }
 }
