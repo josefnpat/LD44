@@ -6,66 +6,108 @@ using UnityEngine.UI;
 // this is so bad
 public class InventoryLayouter : MonoBehaviour
 {
-    private List<GameObject> itemObjects = new List<GameObject>();
+    private class ItemData
+    {
+        public GameObject itemObject = null;
+        public float scale = 1.0f;
+    }
+    private List<ItemData> items = new List<ItemData>();
     public GameObject player;
 
     private const float ICON_SIZE_X = 0.1f;
     private const float PADDING_X = 0.02f; // expressed in terms of x but applied on both axes
     private const float SPACING = 0.02f;
+    private const float SCALE_UP_SPEED = 4.0f;
+    private const float SCALE_DOWN_SPEED = 4.0f;
+    private const float MAX_SCALE = 2.0f;
 
-    void layout() {
+    void resetLayout()
+    {
+        foreach (var item in items) item.scale = 1.0f;
+    }
+
+    void updateLayout()
+    {
         var totalSize = GetComponent<RectTransform>().sizeDelta;
+        var mousePos = Input.mousePosition - new Vector3(totalSize.x, totalSize.y, 0f) * 0.5f;
         var xyFactor = totalSize.x / totalSize.y;
-        var totalWidthPct = itemObjects.Count * ICON_SIZE_X
-            + (itemObjects.Count - 1) * SPACING + PADDING_X;
+
+        var totalWidthPct = 0f;
+        foreach (var item in items) totalWidthPct += ICON_SIZE_X * item.scale + SPACING;
+        totalWidthPct -= SPACING;
+        totalWidthPct += PADDING_X;
         var totalWidth = totalWidthPct * totalSize.x;
+
         var y = (-0.5f + PADDING_X * xyFactor) * totalSize.y;
         var x = 0.5f * totalSize.x - totalWidth;
-        foreach(var item in itemObjects) {
-            var trafo = item.GetComponent<RectTransform>();
+        foreach (var item in items)
+        {
+            var trafo = item.itemObject.GetComponent<RectTransform>();
             trafo.pivot = new Vector2(0f, 0f);
             trafo.localPosition = new Vector3(x, y, 0f);
-            x += totalSize.x * (ICON_SIZE_X + SPACING);
             var imgSize = trafo.sizeDelta;
             trafo.localScale = new Vector3(
-                ICON_SIZE_X * totalSize.x / imgSize.x,
-                ICON_SIZE_X * xyFactor * totalSize.y / imgSize.y,
+                ICON_SIZE_X * totalSize.x / imgSize.x * item.scale,
+                ICON_SIZE_X * xyFactor * totalSize.y / imgSize.y * item.scale,
                 1f);
+            var screenImgSize = new Vector2(imgSize.x * trafo.localScale.x,
+                imgSize.y * trafo.localScale.y);
+
+            var inRect = mousePos.x > x && mousePos.x < x + screenImgSize.x
+                && mousePos.y > y && mousePos.y < y + screenImgSize.y;
+
+            x += totalSize.x * (ICON_SIZE_X * item.scale + SPACING);
+            if (inRect)
+                item.scale += SCALE_UP_SPEED * Time.deltaTime;
+            else
+                item.scale -= SCALE_DOWN_SPEED * Time.deltaTime;
+            item.scale = Mathf.Clamp(item.scale, 1f, MAX_SCALE);
+
         }
     }
 
-    void Update() {
-        var items = player.GetComponent<Inventory>().getItems();
+    void Update()
+    {
+        var inventoryItems = player.GetComponent<Inventory>().getItems();
 
-        for(var i = 0; i < items.Count; ++i) {
+        for (var i = 0; i < inventoryItems.Count; ++i)
+        {
             // there is an item, but it's the wrong one
-            if(itemObjects.Count > i &&
-                    itemObjects[i].GetComponent<UiInventoryItem>().item != items[i]) {
-                Destroy(itemObjects[i]);
-                itemObjects[i] = null;
+            if (items.Count > i &&
+                items[i].itemObject.GetComponent<UiInventoryItem>().item != inventoryItems[i])
+            {
+                Destroy(items[i].itemObject);
+                items[i].itemObject = null;
             }
 
             // there is no item yet
-            if(i >= itemObjects.Count) {
-                itemObjects.Add(null);
-                Debug.Assert(itemObjects.Count > i);
+            if (i >= items.Count)
+            {
+                items.Add(new ItemData());
+                Debug.Assert(items.Count > i);
             }
 
-            if(itemObjects[i] == null) {
+            if (items[i].itemObject == null)
+            {
                 var obj = new GameObject();
                 obj.transform.parent = transform;
-                obj.AddComponent<UiInventoryItem>().item = items[i];
-                obj.AddComponent<Image>().sprite = items[i].uiSprite;
-                itemObjects[i] = obj;
+                obj.AddComponent<UiInventoryItem>().item = inventoryItems[i];
+                obj.AddComponent<Image>().sprite = inventoryItems[i].uiSprite;
+                items[i].itemObject = obj;
+                resetLayout();
             }
         }
 
         // delete extra items
-        var numExtra = itemObjects.Count - items.Count;
-        for(var i = items.Count; i < itemObjects.Count; ++i)
-            Destroy(itemObjects[i]);
-        itemObjects.RemoveRange(items.Count, numExtra);
+        var numExtra = items.Count - inventoryItems.Count;
+        if (numExtra > 0)
+        {
+            for (var i = inventoryItems.Count; i < items.Count; ++i)
+                Destroy(items[i].itemObject);
+            items.RemoveRange(inventoryItems.Count, numExtra);
+            resetLayout();
+        }
 
-        layout();
+        updateLayout();
     }
 }
