@@ -1,54 +1,65 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Inventory : MonoBehaviour
 {
-    private List<string> items = new List<string>();
-
+    [System.Serializable]
+    public class InventoryEntry
+    {
+        public InventoryItem item;
+        public bool has;
+    }
+    public List<InventoryEntry> items = new List<InventoryEntry>();
     public GameObject itemAnimPrefab;
 
-    void Start() {
-        //items = Game.GInstance.gameState.inventory;
-        //addItem("fart"); // TESTING
-        //addItem("bird"); // TESTING
-        addItem("scythe");
+    void Start()
+    {
     }
 
-    void Update() {
+    void Update()
+    {
     }
 
     // where to put this?
-    void spawnAnimItem(string itemName) {
+    void spawnAnimItem(string itemName)
+    {
         var item = InventoryItem.getByName(itemName);
         Debug.Assert(item, "Unknown item of type " + itemName);
         var obj = Instantiate(itemAnimPrefab, transform);
         obj.SendMessage("Init", item);
     }
 
-    public void addItem(string itemName, bool forceAnim = false) {
+    public void addItem(string itemName, bool forceAnim = false)
+    {
         bool hasAlready = hasItem(itemName);
-        if(!hasAlready) items.Add(itemName);
-        if(!hasAlready || forceAnim) spawnAnimItem(itemName);
+        if (!hasAlready) items[getItemIndex(itemName)].has = true;
+        if (!hasAlready || forceAnim) spawnAnimItem(itemName);
         // TODO: play sound
-        // TODO: GetComponent<Controller>().setState(ACQUIRE_ITEM); // player changes sprite, turns around
-        //Game.GInstance.gameState.inventory = items;
+        // player changes sprite?
+        // TODO: GetComponent<Actor>().SetState(EActorState.ReceivingItem);
     }
 
-    public void removeItem(string item, bool all = false) {
-        if(all) {
-            items.RemoveAll(elem => elem == item);
-        } else {
-            items.Remove(item);
-        }
-        //Game.GInstance.gameState.inventory = items;
+    public void removeItem(string itemName)
+    {
+        items[getItemIndex(itemName)].has = false;
     }
 
-    public bool hasItem(string item) {
-        return items.Contains(item);
+    public bool hasItem(string itemName)
+    {
+        return items[getItemIndex(itemName)].has;
     }
 
-    public List<string> getItems() {
-        return items;
+    public List<InventoryItem> getItems()
+    {
+        return items.Where(entry => entry.has).Select(entry => entry.item).ToList();
+    }
+
+    private int getItemIndex(string name)
+    {
+        var idx = items.FindIndex(entry => entry.item.itemName == name);
+        Debug.Assert(idx >= 0);
+        return idx;
     }
 }

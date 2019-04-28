@@ -107,7 +107,6 @@ public class DialogSetVar : IDialogItem {
     }
 
     public void enter(DialogManager dialogManager) {
-        Debug.Log("dialog - set var " + variable + " to " + value);
         dialogManager.gameVars[variable] = value;
     }
 
@@ -146,7 +145,7 @@ public class DialogText : IDialogItem {
     }
 
     public override string ToString() {
-        return string.Format("DialogText(text= '{0}', next={1})", text, Util.typeName(nextItem));
+        return string.Format("DialogText(text='{0}', next={1})", text, Util.typeName(nextItem));
     }
 };
 
@@ -163,13 +162,16 @@ public class DialogGiveItem : IDialogItem {
     }
 
     public void enter(DialogManager dialogManager) {
-        Debug.Log("dialog - give item " + itemName);
         var inventory = dialogManager.player.GetComponent<Inventory>();
         inventory.addItem(itemName);
     }
 
     public IDialogItem next(DialogManager dialogManager) {
         return nextItem;
+    }
+
+    public override string ToString() {
+        return string.Format("DialogGiveItem(item='{0}', next={1})", itemName, Util.typeName(nextItem));
     }
 };
 
@@ -185,13 +187,16 @@ public class DialogTakeItem : IDialogItem {
         this.nextItem = nextItem;
     }
     public void enter(DialogManager dialogManager) {
-        Debug.Log("dialog - take item " + itemName);
         var inventory = dialogManager.player.GetComponent<Inventory>();
         inventory.removeItem(itemName);
     }
 
     public IDialogItem next(DialogManager dialogManager) {
         return nextItem;
+    }
+
+    public override string ToString() {
+        return string.Format("DialogTakeItem(item='{0}', next={1})", itemName, Util.typeName(nextItem));
     }
 };
 
@@ -208,12 +213,15 @@ public class DialogAudio : IDialogItem {
     }
 
     public void enter(DialogManager dialogManager) {
-        Debug.Log("dialog - play audio " + soundFilename);
         // TODO: play sound
     }
 
     public IDialogItem next(DialogManager dialogManager) {
         return nextItem;
+    }
+
+    public override string ToString() {
+        return string.Format("DialogAudio(filename='{0}', next={1})", soundFilename, Util.typeName(nextItem));
     }
 };
 
@@ -225,11 +233,14 @@ public class DialogDie : IDialogItem {
     }
 
     public void enter(DialogManager dialogManager) {
-        Debug.Log("dialog - die");
-        // TODO: have DialogManager.setDialog take a convo partner as an argument, then send it an event here?
+        // TODO: tell dialogManager.npc to die
     }
 
     public IDialogItem next(DialogManager dialogManager) {
         return nextItem;
+    }
+
+    public override string ToString() {
+        return string.Format("DialogDie(next={0})", Util.typeName(nextItem));
     }
 };

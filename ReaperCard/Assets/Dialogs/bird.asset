@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: bird
   m_EditorClassIdentifier: 
   dialogName: bird
-  jsonFile: {fileID: 4900000, guid: ad9230133b3b22249944f8b26f175c0a, type: 3}
+  jsonFile: {fileID: 4900000, guid: 8a8ed03ee00e75c4ab840c321201cb69, type: 3}
