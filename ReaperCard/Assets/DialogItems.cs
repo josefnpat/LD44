@@ -213,7 +213,7 @@ public class DialogSfx : IDialogItem {
     }
 
     public void enter(DialogManager dialogManager) {
-        // TODO: play sound
+        dialogManager.soundManager.Play(soundFilename);
     }
 
     public IDialogItem next(DialogManager dialogManager) {
@@ -259,7 +259,7 @@ public class DialogMusic : IDialogItem {
     }
 
     public void enter(DialogManager dialogManager) {
-        dialogManager.GetComponent<DialogManager>().musicManager.ChangeTo(songName);
+        dialogManager.musicManager.ChangeTo(songName);
     }
 
     public IDialogItem next(DialogManager dialogManager) {

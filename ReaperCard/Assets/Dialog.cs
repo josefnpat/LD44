@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SimpleJSON;
+using System.Linq;
 
 [CreateAssetMenu(fileName = "New Dialog", menuName = "Dialog")]
 public class Dialog : ScriptableObject {
@@ -140,31 +141,58 @@ public class Dialog : ScriptableObject {
         }
     }
 
+    private string nodeSummary(JSONNode jsonData) {
+        string type = jsonData["type"];
+        switch(type) {
+            case "Branch":
+                return string.Format("Branch(variable='{0}')", jsonData["variable"]);
+            case "Choice":
+                return string.Format("Choice('{0}')", jsonData["name"]);
+            case "Set":
+                return string.Format("Set(variable='{0}', value='{1}')", jsonData["variable"], jsonData["value"]);
+            case "Text":
+                return string.Format("Text('{0}')", jsonData["name"]);
+            case "Node":
+                return string.Format("Node('{0}')", jsonData["name"]);
+            default:
+                return string.Format("Unknown Node (id: '{}')", jsonData["id"]);
+        }
+    }
+
     void OnEnable() {
         // Obviously, none of this is efficient at all
         var jsonData = JSON.Parse(jsonFile.text);
-        JSONNode enter = null;
+        var possibleEntryNodes = new HashSet<string>();
         for(var i = 0; i < jsonData.Count; ++i) {
             var node = jsonData[i];
             var id = node["id"];
             nodeByIdCache[id] = node;
+            possibleEntryNodes.Add(id);
+        }
 
-            string type = node["type"];
-            if(type == "Node") {
-                string name = node["name"];
-                name = name.Trim().ToLower();
-                if(name == "enter") {
-                    Debug.Assert(enter == null, "'enter' node has to be unique!");
-                    enter = node;
+        for(var i = 0; i < jsonData.Count; ++i) {
+            var node = jsonData[i];
+            if(node["choices"].Count > 0) {
+                for(var c = 0; c < node["choices"].Count; ++c) {
+                    possibleEntryNodes.Remove(node["choices"][c]);
+                }
+            } else if(node["branches"].Count > 0) {
+                foreach(var branch in node["branches"].Keys) {
+                    possibleEntryNodes.Remove(node["branches"][branch]);
+                }
+            } else {
+                string next = node["next"];
+                if(next != null) {
+                    possibleEntryNodes.Remove(next);
                 }
             }
         }
-        if(enter == null) {
-            // There is no enter node, the root node is the first in the file
-            root = getNode(jsonData[0]["id"]);
-        } else {
-            root = getNode(enter["next"]);
-        }
+        Debug.Assert(possibleEntryNodes.Count == 1,
+            "Found multiple possible entry nodes (no input) for dialog " +
+            dialogName + ": [" + string.Join(", ", possibleEntryNodes
+                .Select(node => nodeSummary(nodeByIdCache[node]))) + "]");
+        var entryId = possibleEntryNodes.ToList()[0];
+        root = getNode(entryId);
     }
 
     public IDialogItem getRoot() {
