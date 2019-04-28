@@ -25,6 +25,8 @@ public class DialogManagerUI : MonoBehaviour {
 	public GameObject EventPanel;
 	public GameObject EventText;
 
+	private bool readyForNext = true;
+
 	private void Start() {
 		OptionText.GetComponent<Text>().text = "";
 		OptionName.GetComponent<Text>().text = "";
@@ -43,6 +45,7 @@ public class DialogManagerUI : MonoBehaviour {
 
 	// Option text, e.g. "Give Cigar | Run away"
 	public void SetOptions(Option option0, Option option1 = null, Option option2 = null, Option option3 = null) {
+		readyForNext = false;
 		DisableAllPanels();
 		OptionPanel.SetActive(true);
 
@@ -69,6 +72,7 @@ public class DialogManagerUI : MonoBehaviour {
 
 	// Dialog text, e.g. "Hello there!"
 	public void SetText(string text, string name = null) {
+		readyForNext = false;
 		DisableAllPanels();
 		TextPanel.SetActive(true);
 		OptionText.GetComponent<Text>().text = text;
@@ -81,25 +85,37 @@ public class DialogManagerUI : MonoBehaviour {
 
 	// Event Text, e.g. "You picked up Old Frog Card!"
 	public void SetEvent(string text){
+		readyForNext = false;
 		DisableAllPanels();
 		EventPanel.SetActive(true);
 		EventText.GetComponent<Text>().text = text;
 	}
 
 	public void OptionButtonPressed(int index) {
-		DisableAllPanels();
 		// hook this up into the Dialog system as the callback
 		Debug.Log("You pressed button " + index);
 		Debug.Log("Text: " + currentOptions [index].text);
 		Debug.Log("Next: " + currentOptions [index].next);
-
 		selectedOption = currentOptions [index];
+		DisableAllPanels();
+		readyForNext = true;
+	}
+
+	public void OKButtonPressed() {
+		DisableAllPanels();
+		readyForNext = true;
+	}
+
+	public bool ReadyForNext() {
+		return readyForNext;
 	}
 
 	// null is valid response
 	public Option GetCurrentSelectedOption() {
 		return selectedOption;
 	}
+
+
 
 	public void ExampleSetOptions() {
 		Option option0 = new Option();
