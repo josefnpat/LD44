@@ -7,8 +7,8 @@ using UnityEngine.Events;
 public class StartDialogEvent : UnityEvent<GameObject, GameObject> {
 }
 
+[RequireComponent(typeof(DialogManagerUI))]
 public class DialogManager : MonoBehaviour {
-	public GameObject dialogManagerUI;
 	public GameObject initDialogPlayer;
 	public InputWrapper controls;
 	public Dictionary<string, string> gameVars = new Dictionary<string, string>();
@@ -26,9 +26,6 @@ public class DialogManager : MonoBehaviour {
 	private IDialogItem currentItem;
 
 	private void Start() {
-		if (dialogManagerUI == null) {
-			Debug.LogError("dialogManagerUI has not been set on the Dialog Manager.");
-		}
 		RunInitDialog();
 	}
 

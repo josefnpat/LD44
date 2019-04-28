@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Interactor : MonoBehaviour
 {
+    [HideInInspector]
     private InputWrapper controls = new InputWrapper();
     private GameObject interactable;
 

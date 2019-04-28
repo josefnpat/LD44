@@ -450,7 +450,7 @@ PrefabInstance:
         type: 3}
       propertyPath: dialogManager
       value: 
-      objectReference: {fileID: 1983087467}
+      objectReference: {fileID: 586715420}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e3d94c6f6440fa48a41adfd59c955f8, type: 3}
 --- !u!4 &422878667 stripped
@@ -529,7 +529,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &584471829
 PrefabInstance:
@@ -602,7 +602,7 @@ PrefabInstance:
         type: 3}
       propertyPath: dialogManager
       value: 
-      objectReference: {fileID: 1983087467}
+      objectReference: {fileID: 586715420}
     - target: {fileID: 3006609251130042638, guid: 60c80fa87891a8e47bdf5b4e74728712,
         type: 3}
       propertyPath: m_Enabled
@@ -622,6 +622,32 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1296283371}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &586715426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586715420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab6c3eaa8f75f154a99fe7aeda279136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initDialogPlayer: {fileID: 206035119}
+  player: {fileID: 0}
+  npc: {fileID: 0}
+  initDialog: {fileID: 0}
+  startDialog:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: StartDialogEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  endDialog:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &590609414
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,7 +992,7 @@ PrefabInstance:
         type: 3}
       propertyPath: dialogManager
       value: 
-      objectReference: {fileID: 1983087467}
+      objectReference: {fileID: 586715420}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86d17f2776c9b1e42b0a1922bbe34015, type: 3}
 --- !u!1001 &1200090619
@@ -1040,7 +1066,7 @@ PrefabInstance:
         type: 3}
       propertyPath: dialogManager
       value: 
-      objectReference: {fileID: 1983087467}
+      objectReference: {fileID: 586715420}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74ab7762db768814183b109144512ef4, type: 3}
 --- !u!4 &1200090620 stripped
@@ -1146,7 +1172,7 @@ PrefabInstance:
     - target: {fileID: 1752678432228184025, guid: 9149060acb3bd44478e7004f0d95f940,
         type: 3}
       propertyPath: m_Name
-      value: DialogManagerUI
+      value: DialogManager
       objectReference: {fileID: 0}
     - target: {fileID: 1752678432228184029, guid: 9149060acb3bd44478e7004f0d95f940,
         type: 3}
@@ -1186,7 +1212,7 @@ PrefabInstance:
     - target: {fileID: 1752678432228184029, guid: 9149060acb3bd44478e7004f0d95f940,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1752678432228184029, guid: 9149060acb3bd44478e7004f0d95f940,
         type: 3}
@@ -1431,7 +1457,7 @@ Transform:
   - {fileID: 1200090620}
   - {fileID: 800279252}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1634501985 stripped
 GameObject:
@@ -1490,64 +1516,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1983087467
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1983087469}
-  - component: {fileID: 1983087468}
-  m_Layer: 0
-  m_Name: DialogManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1983087468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983087467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab6c3eaa8f75f154a99fe7aeda279136, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogManagerUI: {fileID: 586715420}
-  initDialogPlayer: {fileID: 0}
-  player: {fileID: 206035119}
-  npc: {fileID: 0}
-  initDialog: {fileID: 0}
-  startDialog:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: StartDialogEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  endDialog:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
---- !u!4 &1983087469
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983087467}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5546284, y: 1.1850002, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2001702140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1577,7 +1545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a0d916a7b524dc4e9d3e05dcbba4436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogManager: {fileID: 1983087467}
+  dialogManager: {fileID: 0}
   dialog: {fileID: 11400000, guid: c03950c7a7a514f4992b612e44656f0c, type: 2}
 --- !u!4 &2001702142
 Transform:
@@ -1591,7 +1559,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2022425587
 PrefabInstance:
@@ -1643,7 +1611,7 @@ PrefabInstance:
     - target: {fileID: 3772427247069225174, guid: aa95fba459e792747b354451666e5c35,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3772427247069225174, guid: aa95fba459e792747b354451666e5c35,
         type: 3}

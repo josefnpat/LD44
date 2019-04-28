@@ -70,12 +70,12 @@ public class DialogChoice : IDialogItem {
     }
 
     public void enter(DialogManager dialogManager) {
-        var dialogManagerUI = dialogManager.dialogManagerUI.GetComponent<DialogManagerUI>();
+        var dialogManagerUI = dialogManager.GetComponent<DialogManagerUI>();
         dialogManagerUI.SetOptions(choices.Select(choice => choice.text).ToList());
     }
 
     public IDialogItem next(DialogManager dialogManager) {
-        var dialogManagerUI = dialogManager.dialogManagerUI.GetComponent<DialogManagerUI>();
+        var dialogManagerUI = dialogManager.GetComponent<DialogManagerUI>();
         if(dialogManagerUI.ReadyForNext()) {
             var choice = choices[dialogManagerUI.GetCurrentSelectedOption()];
             Debug.Log("dialog - chosen: " + choice.text);
@@ -133,12 +133,12 @@ public class DialogText : IDialogItem {
     }
 
     public void enter(DialogManager dialogManager) {
-        var dialogManagerUI = dialogManager.dialogManagerUI.GetComponent<DialogManagerUI>();
+        var dialogManagerUI = dialogManager.GetComponent<DialogManagerUI>();
 		dialogManagerUI.SetText(text, "BUTFACE");
 	}
 
     public IDialogItem next(DialogManager dialogManager) {
-        var dialogManagerUI = dialogManager.dialogManagerUI.GetComponent<DialogManagerUI>();
+        var dialogManagerUI = dialogManager.GetComponent<DialogManagerUI>();
 		if(dialogManagerUI.ReadyForNext()) {
             return nextItem;
         }
