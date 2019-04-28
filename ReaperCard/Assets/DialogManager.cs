@@ -12,6 +12,7 @@ public class DialogManager : MonoBehaviour {
 	public GameObject initDialogPlayer;
 	public InputWrapper controls;
 	public Dictionary<string, string> gameVars = new Dictionary<string, string>();
+    public MusicManager musicManager;
 
      [HideInInspector]
     public GameObject player;
@@ -26,6 +27,7 @@ public class DialogManager : MonoBehaviour {
 	private IDialogItem currentItem;
 
 	private void Start() {
+        Debug.Assert(musicManager != null, "Music manager is not set!");
 		RunInitDialog();
 	}
 

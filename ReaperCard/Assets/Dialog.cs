@@ -82,6 +82,13 @@ public class Dialog : ScriptableObject {
         return item;
     }
 
+    IDialogItem parseMusicNode(JSONNode jsonData) {
+        string name = jsonData["name"];
+        var item = cacheItem(jsonData["id"], new DialogMusic(name.Substring("music:".Length)));
+        item.setNext(getNode(jsonData["next"]));
+        return item;
+    }
+
     IDialogItem parseDieNode(JSONNode jsonData) {
         var item = cacheItem(jsonData["id"], new DialogDie());
         item.setNext(getNode(jsonData["next"]));
@@ -117,6 +124,8 @@ public class Dialog : ScriptableObject {
                     return parseTakeNode(jsonData);
                 } else if(name.StartsWith("audio:")) {
                     return parseAudioNode(jsonData);
+                } else if(name.StartsWith("music:")) {
+                    return parseMusicNode(jsonData);
                 } else if(name == "die") {
                     return parseDieNode(jsonData);
                 } else if(name == "end") {

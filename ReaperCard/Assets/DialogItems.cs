@@ -226,7 +226,7 @@ public class DialogAudio : IDialogItem {
 };
 
 public class DialogDie : IDialogItem {
-    public IDialogItem nextItem;
+    private IDialogItem nextItem;
 
     public void setNext(IDialogItem nextItem) {
         this.nextItem = nextItem;
@@ -245,3 +245,28 @@ public class DialogDie : IDialogItem {
         return string.Format("DialogDie(next={0})", Util.typeName(nextItem));
     }
 };
+
+public class DialogMusic : IDialogItem {
+    private string songName;
+    private IDialogItem nextItem;
+
+    public DialogMusic(string songName) {
+        this.songName = songName;
+    }
+
+    public void setNext(IDialogItem nextItem) {
+        this.nextItem = nextItem;
+    }
+
+    public void enter(DialogManager dialogManager) {
+        dialogManager.GetComponent<DialogManager>().musicManager.ChangeTo(songName);
+    }
+
+    public IDialogItem next(DialogManager dialogManager) {
+        return nextItem;
+    }
+
+    public override string ToString() {
+        return string.Format("DialogMusic(music='{0}', next={1})", songName, Util.typeName(nextItem));
+    }
+}

@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MusicManager : MonoBehaviour {
-
+	[System.Serializable]
+	public class MusicEntry {
+		public string name;
+		public AudioClip song;
+	}
+    public List<MusicEntry> songs = new List<MusicEntry>();
 	public string initFile;
 	private AudioSource audioSource;
 
@@ -16,13 +21,16 @@ public class MusicManager : MonoBehaviour {
 		ChangeTo(initFile);
 	}
 
-	public void ChangeTo(string song) {
-		Debug.Log("Changing music to: " + song);
+	public void ChangeTo(string songName) {
+		songName = songName.Trim();
+		Debug.Log("Changing music to: " + songName);
 		audioSource.Stop();
-		audioSource.clip = Resources.Load("Music/"+song) as AudioClip;
-		//audioSource.clip = Resources.Load<AudioClip>(song);
-		Debug.Log("audioSource.clip:" + audioSource.clip);
-		audioSource.Play();
+		if(songName.Length > 0) {
+			var song = songs.Find(item => item.name == songName);
+			Debug.Assert(song != null, "Unknown song with name " + songName);
+			audioSource.clip = song.song;
+			Debug.Log("audioSource.clip:" + audioSource.clip);
+			audioSource.Play();
+		}
 	}
-
 }
