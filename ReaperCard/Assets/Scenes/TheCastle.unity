@@ -336,6 +336,23 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1456392112}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &206035126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206035119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a232a52f2ec86646b6ed56abbdcfebd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggles:
+  - child: {fileID: 1634501985}
+    item: scythe
+  - child: {fileID: 430442991}
+    item: scythe
 --- !u!114 &206035127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,6 +446,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7625867975086993292, guid: 5e3d94c6f6440fa48a41adfd59c955f8,
     type: 3}
   m_PrefabInstance: {fileID: 422878666}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &430442991 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7005801386164540025, guid: cb19a09f616c2b84b83ba450d028067d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1456392112}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &558557032
 GameObject:
@@ -568,6 +591,11 @@ PrefabInstance:
       propertyPath: dialogManager
       value: 
       objectReference: {fileID: 1983087467}
+    - target: {fileID: 3006609251130042638, guid: 60c80fa87891a8e47bdf5b4e74728712,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60c80fa87891a8e47bdf5b4e74728712, type: 3}
 --- !u!4 &584471830 stripped
@@ -575,6 +603,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 866938196376566771, guid: 60c80fa87891a8e47bdf5b4e74728712,
     type: 3}
   m_PrefabInstance: {fileID: 584471829}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &586715420 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1752678432228184025, guid: 9149060acb3bd44478e7004f0d95f940,
+    type: 3}
+  m_PrefabInstance: {fileID: 1296283371}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &590609414
 GameObject:
@@ -1281,6 +1315,16 @@ PrefabInstance:
       propertyPath: prefab
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1794266258529950772, guid: cb19a09f616c2b84b83ba450d028067d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8566415049958192226, guid: cb19a09f616c2b84b83ba450d028067d,
+        type: 3}
+      propertyPath: jumpHax
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb19a09f616c2b84b83ba450d028067d, type: 3}
 --- !u!1 &1506169453
@@ -1377,6 +1421,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1634501985 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3100871715622018563, guid: cb19a09f616c2b84b83ba450d028067d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1456392112}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1668751733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1457,7 +1507,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6c3eaa8f75f154a99fe7aeda279136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogManagerUI: {fileID: 586715420}
   player: {fileID: 206035119}
+  initDialog: {fileID: 0}
 --- !u!4 &1983087469
 Transform:
   m_ObjectHideFlags: 0

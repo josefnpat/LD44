@@ -43,13 +43,13 @@ public class DialogManagerUI : MonoBehaviour {
 		DisableAllPanels();
 		OptionPanel.SetActive(true);
 
-		const int MAX_OPTIONS = 4;
-		Debug.Assert(options.Count <= MAX_OPTIONS);
+		Debug.Assert(options.Count <= Options.Length);
+		Debug.Assert(OptionsButtons.Length == Options.Length);
 		for(var i = 0; i < options.Count; ++i) {
 			OptionsButtons[i].SetActive(true);
 			Options[i].GetComponent<Text>().text = options[i];
 		}
-		for(var i = options.Count; i < MAX_OPTIONS; ++i) {
+		for(var i = options.Count; i < Options.Length; ++i) {
 			OptionsButtons[i].SetActive(false);
 		}
 	}

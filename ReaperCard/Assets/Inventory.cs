@@ -12,6 +12,7 @@ public class Inventory : MonoBehaviour
         //items = Game.GInstance.gameState.inventory;
         //addItem("fart"); // TESTING
         //addItem("bird"); // TESTING
+        addItem("scythe");
     }
 
     void Update() {

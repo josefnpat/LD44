@@ -9,8 +9,8 @@ public class InventoryItemAnim : MonoBehaviour
 
     private const float ANIM_DURATION = 3.0f;
     private const float ANIM_END_DURATION = 0.5f;
-    private const float HEIGHT = 1.6f;
-    private const float START_RADIUS = 2.0f;
+    private const float HEIGHT = 8.0f;
+    private const float START_RADIUS = 5.0f;
     private const float ROT_SPEED = 3.0f; // rotations per second
 
     // Start is called before the first frame update
