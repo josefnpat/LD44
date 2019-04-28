@@ -291,7 +291,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 39032850}
-  m_LocalRotation: {x: 0.19329783, y: -0.000000016881863, z: 0.0000000033259473, w: 0.98114014}
+  m_LocalRotation: {x: 0.19329783, y: 0.00000001688188, z: -0.0000000033259655, w: 0.98114014}
   m_LocalPosition: {x: -7.74, y: 16.3, z: -27.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -396,7 +396,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94426610}
-  m_LocalRotation: {x: 0.19329783, y: -0.000000016881863, z: 0.0000000033259473, w: 0.98114014}
+  m_LocalRotation: {x: 0.19329783, y: 0.00000001688188, z: -0.0000000033259655, w: 0.98114014}
   m_LocalPosition: {x: -7.74, y: 11.999999, z: -27.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1991,44 +1991,6 @@ MonoBehaviour:
   - target: {fileID: 0}
     weight: 1
     radius: 8
---- !u!1 &1373174579 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7038797914790356675, guid: aa95fba459e792747b354451666e5c35,
-    type: 3}
-  m_PrefabInstance: {fileID: 2022425587}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1373174581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1373174579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 044300c8a41cfde4f9caa9baacbe1611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogManager: {fileID: 586715420}
-  door: {fileID: 1455918473}
-  closedMessage: There is still work left to do!
-  keys:
-  - {fileID: 11400000, guid: e9951b9f3b4a9654e9ce21ea2e27b56c, type: 2}
-  - {fileID: 11400000, guid: cd6dcba9c704cde4eaf7a19a85fa718b, type: 2}
-  - {fileID: 11400000, guid: b046d115e3697ac4281fb4c30eb1d2de, type: 2}
-  - {fileID: 11400000, guid: 43517410469cfcc43ac9a1b976ca1f2f, type: 2}
---- !u!114 &1455918473 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1761960864260389523, guid: aa95fba459e792747b354451666e5c35,
-    type: 3}
-  m_PrefabInstance: {fileID: 2022425587}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ec85c2881f24c04eab1c3f8d9745a0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1456392112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2563,6 +2525,40 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3605326352812724682, guid: aa95fba459e792747b354451666e5c35,
+        type: 3}
+      propertyPath: keys.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605326352812724682, guid: aa95fba459e792747b354451666e5c35,
+        type: 3}
+      propertyPath: dialogManager
+      value: 
+      objectReference: {fileID: 586715420}
+    - target: {fileID: 3605326352812724682, guid: aa95fba459e792747b354451666e5c35,
+        type: 3}
+      propertyPath: keys.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: e9951b9f3b4a9654e9ce21ea2e27b56c,
+        type: 2}
+    - target: {fileID: 3605326352812724682, guid: aa95fba459e792747b354451666e5c35,
+        type: 3}
+      propertyPath: keys.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: b046d115e3697ac4281fb4c30eb1d2de,
+        type: 2}
+    - target: {fileID: 3605326352812724682, guid: aa95fba459e792747b354451666e5c35,
+        type: 3}
+      propertyPath: keys.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: cd6dcba9c704cde4eaf7a19a85fa718b,
+        type: 2}
+    - target: {fileID: 3605326352812724682, guid: aa95fba459e792747b354451666e5c35,
+        type: 3}
+      propertyPath: keys.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 43517410469cfcc43ac9a1b976ca1f2f,
+        type: 2}
     - target: {fileID: 48236911278689617, guid: aa95fba459e792747b354451666e5c35,
         type: 3}
       propertyPath: m_Name

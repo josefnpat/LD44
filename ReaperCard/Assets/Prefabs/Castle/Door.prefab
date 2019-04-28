@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5485524169796621206}
   - component: {fileID: 724982325225685316}
   - component: {fileID: 3546936383509998493}
+  - component: {fileID: 6125495517403876629}
   m_Layer: 0
   m_Name: Interactable
   m_TagString: Untagged
@@ -58,6 +59,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   readyIcon: {fileID: 1366751415713170685}
+--- !u!114 &6125495517403876629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478584315728116252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 044300c8a41cfde4f9caa9baacbe1611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogManager: {fileID: 0}
+  door: {fileID: 9185424168265164364}
+  closedMessage: Door closed!
+  keys: []
 --- !u!1 &1366751415713170685
 GameObject:
   m_ObjectHideFlags: 0
