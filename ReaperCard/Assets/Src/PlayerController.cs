@@ -23,28 +23,10 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 Move = Controls.GetXY();
         PlayerActor.AddMovementInput(Move, 1f);
-        
+
         if(Controls.IsDown(EKey.Jump))
         {
             PlayerActor.TryJump();
         }
-
-        if(Controls.IsDown(EKey.Confirm))
-        {
-            
-            if(!PlayerComp)
-            {
-                PlayerComp = PlayerActor.gameObject.GetComponentInChildren<PlayerComponent>();
-            }
-
-            if(PlayerComp && PlayerComp.InteractObj)
-            {
-                Debug.Log("interact");
-                Interactible interact = PlayerComp.InteractObj.GetComponent<Interactible>();
-                interact.Interact.Invoke();
-            }
-        }
     }
-
-
 }

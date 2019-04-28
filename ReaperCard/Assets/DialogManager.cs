@@ -1,34 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+[System.Serializable]
+public class StartDialogEvent : UnityEvent<GameObject, GameObject> {
+}
 
 public class DialogManager : MonoBehaviour {
 	public GameObject dialogManagerUI;
-	private DialogManagerUI _dialogManagerUI;
-	public GameObject player;
+	public GameObject initDialogPlayer;
 	public InputWrapper controls;
 	public Dictionary<string, string> gameVars = new Dictionary<string, string>();
 
+     [HideInInspector]
+    public GameObject player;
+     [HideInInspector]
+    public GameObject npc;
+
 	public Dialog initDialog;
+
+    public StartDialogEvent startDialog;
+    public UnityEvent endDialog;
 
 	private IDialogItem currentItem;
 
 	private void Start() {
-		if (player == null) {
-			Debug.LogError("Player has not been set on the Dialog Manager.");
-		}
 		if (dialogManagerUI == null) {
 			Debug.LogError("dialogManagerUI has not been set on the Dialog Manager.");
-		} else {
-			_dialogManagerUI = dialogManagerUI.GetComponent<DialogManagerUI>();
-			Debug.Assert(_dialogManagerUI, "Cannot find DialogManagerUI component.");
 		}
 		RunInitDialog();
 	}
 
 	public void RunInitDialog() {
 		if (initDialog != null) {
-			setDialog(initDialog.getRoot());
+            Debug.Assert(initDialogPlayer != null);
+			setDialog(initDialog.getRoot(), initDialogPlayer, null);
 		}
 	}
 
@@ -47,14 +54,21 @@ public class DialogManager : MonoBehaviour {
 			currentItem = null;
             Debug.Assert(player != null);
             player.GetComponent<Actor>().SetState(EActorState.Walking);
+            endDialog.Invoke();
 		}
     }
 
-	public void setDialog(IDialogItem item) {
+	public void setDialog(IDialogItem item, GameObject player, GameObject npc) {
         Debug.Assert(currentItem == null);
         Debug.Assert(player != null && player.GetComponent<Actor>());
+
+        this.player = player;
+        this.npc = npc;
+
         Debug.Log("setDialog " + item);
         player.GetComponent<Actor>().SetState(EActorState.InConversation); // can't move
+        startDialog.Invoke(player, npc);
+
         currentItem = item;
 		currentItem.enter(this);
         advanceDialog();

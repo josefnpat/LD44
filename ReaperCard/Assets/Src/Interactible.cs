@@ -9,34 +9,27 @@ public class Interactible : MonoBehaviour
     public GameObject DialogReadyIcon;
     SphereCollider interactionArea;
 
-    public UnityEvent Interact;
-
     // Start is called before the first frame update
     void Start()
     {
         interactionArea = GetComponent<SphereCollider>();
-
     }
 
-    private void OnTriggerEnter(Collider Other)
-    {
+    public void doInteraction(GameObject player) {
+        SendMessage("Interact", player);
+    }
+
+    private void OnTriggerEnter(Collider other) {
         DialogReadyIcon.SetActive(true);
 
-        PlayerComponent player = Other.GetComponent<PlayerComponent>();
-        if(player)
-        {
-            player.TrySetInteractObj(this.gameObject);
-        }
+        Interactor interactor = other.GetComponent<Interactor>();
+        if(interactor) interactor.setInteractable(this.gameObject);
     }
 
-    private void OnTriggerExit(Collider Other)
-    {
+    private void OnTriggerExit(Collider other) {
         DialogReadyIcon.SetActive(false);
 
-        PlayerComponent player = Other.GetComponent<PlayerComponent>();
-        if (player)
-        {
-            player.TryClearInteractObj(this.gameObject);
-        }
+        Interactor interactor = other.GetComponent<Interactor>();
+        if(interactor) interactor.clearInteractable(this.gameObject);
     }
 }

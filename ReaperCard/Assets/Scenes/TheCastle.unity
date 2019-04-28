@@ -367,6 +367,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemAnimPrefab: {fileID: 5257846634853675266, guid: 2360b86822fd13e429764b7e6c672422,
     type: 3}
+--- !u!114 &206035128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206035119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a15eda095e251cb4da478e92f416e6aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &422878666
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1508,8 +1520,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogManagerUI: {fileID: 586715420}
+  initDialogPlayer: {fileID: 0}
   player: {fileID: 206035119}
+  npc: {fileID: 0}
   initDialog: {fileID: 0}
+  startDialog:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: StartDialogEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  endDialog:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!4 &1983087469
 Transform:
   m_ObjectHideFlags: 0

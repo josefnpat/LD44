@@ -7,7 +7,7 @@ public class DialogInteraction : MonoBehaviour
     public GameObject dialogManager;
     public Dialog dialog;
 
-    public void Interact() {
-        dialogManager.GetComponent<DialogManager>().setDialog(dialog.getRoot());
+    void Interact(GameObject player) {
+        dialogManager.GetComponent<DialogManager>().setDialog(dialog.getRoot(), player, gameObject);
     }
 }
