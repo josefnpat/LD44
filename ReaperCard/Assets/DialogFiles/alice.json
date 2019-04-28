@@ -95,13 +95,13 @@
     {
         "type": "Node",
         "id": "22d23f7c-9a41-44d4-8fec-af23cab892ef",
-        "name": "give:alice_card",
+        "name": "addinv:alice_card",
         "next": "af58ec33-0932-4afa-9a7c-0be76c938cf8"
     },
     {
         "type": "Node",
         "id": "af58ec33-0932-4afa-9a7c-0be76c938cf8",
-        "name": "take:candle",
+        "name": "removeinv:candle",
         "next": "88f49a68-e386-4676-b307-a5118f67e4ed"
     },
     {

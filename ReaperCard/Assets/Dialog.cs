@@ -63,14 +63,14 @@ public class Dialog : ScriptableObject {
 
     IDialogItem parseGiveNode(JSONNode jsonData) {
         string name = jsonData["name"];
-        var item = cacheItem(jsonData["id"], new DialogGiveItem(name.Substring("give:".Length)));
+        var item = cacheItem(jsonData["id"], new DialogGiveItem(name.Substring("addinv:".Length)));
         item.setNext(getNode(jsonData["next"]));
         return item;
     }
 
     IDialogItem parseTakeNode(JSONNode jsonData) {
         string name = jsonData["name"];
-        var item = cacheItem(jsonData["id"], new DialogTakeItem(name.Substring("take:".Length)));
+        var item = cacheItem(jsonData["id"], new DialogTakeItem(name.Substring("removeinv:".Length)));
         item.setNext(getNode(jsonData["next"]));
         return item;
     }
@@ -111,9 +111,9 @@ public class Dialog : ScriptableObject {
             case "Node":
                 string name = jsonData["name"];
                 name = name.Trim().ToLower();
-                if(name.StartsWith("give:")) {
+                if(name.StartsWith("addinv:")) {
                     return parseGiveNode(jsonData);
-                } else if(name.StartsWith("take:")) {
+                } else if(name.StartsWith("removeinv:")) {
                     return parseTakeNode(jsonData);
                 } else if(name.StartsWith("audio:")) {
                     return parseAudioNode(jsonData);
