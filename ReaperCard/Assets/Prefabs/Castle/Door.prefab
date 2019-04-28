@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5485524169796621206}
   - component: {fileID: 724982325225685316}
   - component: {fileID: 3546936383509998493}
-  - component: {fileID: 5498999571532727084}
   m_Layer: 0
   m_Name: Interactable
   m_TagString: Untagged
@@ -59,19 +58,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   readyIcon: {fileID: 1366751415713170685}
---- !u!114 &5498999571532727084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 478584315728116252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e827e91614a87ce418cda149d9301ec7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  door: {fileID: 9185424168265164364}
 --- !u!1 &1366751415713170685
 GameObject:
   m_ObjectHideFlags: 0

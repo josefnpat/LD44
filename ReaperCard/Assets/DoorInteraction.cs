@@ -4,18 +4,38 @@ using UnityEngine;
 
 public class DoorInteraction : MonoBehaviour
 {
+    public GameObject dialogManager;
     public Door door;
+    public string closedMessage;
+    public List<InventoryItem> keys; // you need all of them
 
-    bool bHasKeyItem = true;
+    private GameObject player;
+    private bool waitingForDialogManager;
 
     void Interact(GameObject player) {
-        if(bHasKeyItem)
-        {
-            door.OpenDoor(true);
+        var inventory = player.GetComponent<Inventory>();
+        bool hasAllKeys = true;
+        foreach(var key in keys) {
+            if(!inventory.hasItem(key.itemName)) {
+                hasAllKeys = false;
+                break;
+            }
         }
-        else
-        {
-            // Set Dialog
+
+        if(hasAllKeys) {
+            door.OpenDoor(true);
+        } else {
+            dialogManager.GetComponent<DialogManagerUI>().SetEvent(closedMessage);
+            player.GetComponent<Actor>().SetState(EActorState.InConversation);
+            this.player = player;
+            waitingForDialogManager = true;
+        }
+    }
+
+    void Update() {
+        if(waitingForDialogManager && dialogManager.GetComponent<DialogManagerUI>().ReadyForNext()) {
+            player.GetComponent<Actor>().SetState(EActorState.Walking);
+            waitingForDialogManager = false;
         }
     }
 }
