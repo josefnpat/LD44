@@ -17,17 +17,18 @@ public class DialogManager : MonoBehaviour {
     void Update() {
         if(currentItem != null) {
             var next = currentItem.next(this);
-            while(next != null) {
+            while(next != null && next != currentItem) {
                 currentItem.exit(this);
                 next.enter(this);
-
-                if(next.GetType() == typeof(DialogEnd)) {
-                    currentItem = null;
-                    player.GetComponent<Actor>().SetState(EActorState.Walking);
-                    break;
-                }
+                currentItem = next;
                 next = currentItem.next(this);
             };
+
+            if(next == null) {
+                currentItem.exit(this);
+                currentItem = null;
+                player.GetComponent<Actor>().SetState(EActorState.Walking);
+            }
         }
     }
 };

@@ -135,7 +135,7 @@ public class DialogText : IDialogItem {
     public IDialogItem next(DialogManager dialogManager) {
         var controls = dialogManager.player.GetComponent<PlayerController>().Controls;
         if(true || controls.IsDown(EKey.Confirm)) return this.nextItem;
-        return null;
+        return this;
     }
 };
 
