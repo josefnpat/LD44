@@ -483,7 +483,11 @@ MonoBehaviour:
     has: 0
   - item: {fileID: 11400000, guid: 9dd70e0edc054fd478bed0f97306b2cd, type: 2}
     has: 1
-  - item: {fileID: 11400000, guid: 0e7640d45a84e714fad0765b0a7e2b42, type: 2}
+  - item: {fileID: 11400000, guid: b046d115e3697ac4281fb4c30eb1d2de, type: 2}
+    has: 0
+  - item: {fileID: 11400000, guid: cd6dcba9c704cde4eaf7a19a85fa718b, type: 2}
+    has: 0
+  - item: {fileID: 11400000, guid: 43517410469cfcc43ac9a1b976ca1f2f, type: 2}
     has: 0
   itemAnimPrefab: {fileID: 5257846634853675266, guid: 2360b86822fd13e429764b7e6c672422,
     type: 3}
