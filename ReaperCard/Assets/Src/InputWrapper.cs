@@ -50,8 +50,8 @@ public class InputWrapper
     public InputWrapper()
     {
 
-        AxisNameX = "MoveX";
-        AxisNameY = "MoveY";
+        AxisNameX = "Horizontal";
+        AxisNameY = "Vertical";
 
 
 
