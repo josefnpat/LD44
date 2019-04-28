@@ -1,0 +1,126 @@
+[
+    {
+        "type": "Node",
+        "id": "adb85564-a1c8-4cfc-a7d4-04cca21b0083",
+        "name": "enter",
+        "next": "9e794d8d-75db-45fa-89af-7b0c845aa92c"
+    },
+    {
+        "type": "Branch",
+        "id": "9e794d8d-75db-45fa-89af-7b0c845aa92c",
+        "variable": "yell_more",
+        "branches": {
+            "true": "0aaaad8f-932c-4dcc-8988-6d884195399d",
+            "false": "ecf1a991-66bb-49b4-9645-05e23e4a4611"
+        }
+    },
+    {
+        "type": "Text",
+        "id": "b2816622-a2d5-43bd-a6c5-7abdb2901a77",
+        "name": "Come back for more, have you?",
+        "next": null
+    },
+    {
+        "type": "Node",
+        "id": "0aaaad8f-932c-4dcc-8988-6d884195399d",
+        "name": "audio:alice_return.ogg",
+        "next": "b2816622-a2d5-43bd-a6c5-7abdb2901a77"
+    },
+    {
+        "type": "Node",
+        "id": "ecf1a991-66bb-49b4-9645-05e23e4a4611",
+        "name": "audio:alice1.ogg",
+        "next": "df16a750-92f3-4ab6-a5c8-b3745b2a5f3c"
+    },
+    {
+        "type": "Text",
+        "id": "df16a750-92f3-4ab6-a5c8-b3745b2a5f3c",
+        "name": "Harumph!",
+        "next": "b94ba9a3-044c-4cba-984b-38016a797bc1"
+    },
+    {
+        "type": "Text",
+        "id": "f9fb9fb4-49e9-4d9b-a2b2-0d55ce27c557",
+        "name": "What can I do you for? Have you got my candle?",
+        "choices": [
+            "3c8e6431-2c88-4cfa-81f7-4897ef0f4f54",
+            "02b0e588-1fc7-4bc8-a74c-71580fd1db37"
+        ]
+    },
+    {
+        "type": "Node",
+        "id": "b94ba9a3-044c-4cba-984b-38016a797bc1",
+        "name": "audio:alice2.ogg",
+        "next": "f9fb9fb4-49e9-4d9b-a2b2-0d55ce27c557"
+    },
+    {
+        "type": "Choice",
+        "id": "3c8e6431-2c88-4cfa-81f7-4897ef0f4f54",
+        "name": "Howdy ma'am, I'm a good boy who loves candles.",
+        "next": "0f6d46ec-a4d6-4d48-9bf3-6617033a4dd1"
+    },
+    {
+        "type": "Choice",
+        "id": "02b0e588-1fc7-4bc8-a74c-71580fd1db37",
+        "name": "Hello, I'm a badass who hates candles.",
+        "next": "efb6a51d-1bf2-46b2-b4fc-0eab35a7cb31"
+    },
+    {
+        "type": "Branch",
+        "id": "0f6d46ec-a4d6-4d48-9bf3-6617033a4dd1",
+        "variable": "item:candle",
+        "branches": {
+            "true": "65522f00-f6fc-4223-a0c9-145d9778cc76",
+            "false": "efb6a51d-1bf2-46b2-b4fc-0eab35a7cb31"
+        }
+    },
+    {
+        "type": "Text",
+        "id": "efb6a51d-1bf2-46b2-b4fc-0eab35a7cb31",
+        "name": "What is wrong with you? Go away!",
+        "next": "1dd6d04b-2837-45e2-ba8c-55a5778762f5"
+    },
+    {
+        "type": "Text",
+        "id": "4ce95012-18dc-4426-8533-d6deb1a2ccc5",
+        "name": "What a fine gentleman you are!",
+        "next": "22d23f7c-9a41-44d4-8fec-af23cab892ef"
+    },
+    {
+        "type": "Node",
+        "id": "65522f00-f6fc-4223-a0c9-145d9778cc76",
+        "name": "audio:alice_happy.ogg",
+        "next": "4ce95012-18dc-4426-8533-d6deb1a2ccc5"
+    },
+    {
+        "type": "Node",
+        "id": "22d23f7c-9a41-44d4-8fec-af23cab892ef",
+        "name": "give:alice_card",
+        "next": "af58ec33-0932-4afa-9a7c-0be76c938cf8"
+    },
+    {
+        "type": "Node",
+        "id": "af58ec33-0932-4afa-9a7c-0be76c938cf8",
+        "name": "take:candle",
+        "next": "88f49a68-e386-4676-b307-a5118f67e4ed"
+    },
+    {
+        "type": "Set",
+        "id": "1dd6d04b-2837-45e2-ba8c-55a5778762f5",
+        "variable": "yelled_at",
+        "value": "true",
+        "next": "797907f4-f34b-4562-bb78-8da0cdab8fc2"
+    },
+    {
+        "type": "Node",
+        "id": "797907f4-f34b-4562-bb78-8da0cdab8fc2",
+        "name": "end",
+        "next": null
+    },
+    {
+        "type": "Node",
+        "id": "88f49a68-e386-4676-b307-a5118f67e4ed",
+        "name": "die",
+        "next": "797907f4-f34b-4562-bb78-8da0cdab8fc2"
+    }
+]
