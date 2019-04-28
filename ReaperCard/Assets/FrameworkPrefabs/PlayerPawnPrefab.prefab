@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 1794266258529950772}
   - component: {fileID: 3495412385151039854}
   - component: {fileID: 6372515887766400642}
-  - component: {fileID: -3908449960633639354}
-  - component: {fileID: 1696740596315132859}
   m_Layer: 8
   m_Name: PlayerPawnPrefab
   m_TagString: Untagged
@@ -31,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2785190533658434398}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 5626404367909615026}
   m_Father: {fileID: 0}
@@ -65,6 +63,7 @@ MonoBehaviour:
   floatRadius: 0.25
   TempSphere: {fileID: 6187060485742518272, guid: 5adf0332a028a25429adb557f0b7633c,
     type: 3}
+  jumpHax: 1
 --- !u!114 &1794266258529950772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +77,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InteractObj: {fileID: 0}
+  Camera: {fileID: 0}
+  prefab: {fileID: 0}
 --- !u!54 &3495412385151039854
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -108,51 +109,6 @@ CapsuleCollider:
   m_Height: 8
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &-3908449960633639354
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2785190533658434398}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1696740596315132859
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2785190533658434398}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 76eadf89815ccde46b27f4e0a21ea1c6, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!1 &5280149493867086608
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +296,7 @@ PrefabInstance:
     - target: {fileID: 6634177918378446021, guid: 565252da768c9014190d8424df04aab9,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 565252da768c9014190d8424df04aab9, type: 3}
