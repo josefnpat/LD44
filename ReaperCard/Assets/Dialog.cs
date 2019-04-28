@@ -47,7 +47,7 @@ public class Dialog : ScriptableObject {
     IDialogItem parseTextNode(JSONNode jsonData) {
         string text = jsonData["name"];
         var item = cacheItem(jsonData["id"], new DialogText(text));
-        if(jsonData["choices"]) {
+        if(jsonData["choices"].Count > 0) {
             var choices = new List<DialogChoice.Choice>();
             for(var i = 0; i < jsonData["choices"].Count; ++i) {
                 choices.Add(parseChoiceNode(nodeByIdCache[jsonData["choices"][i]]));
