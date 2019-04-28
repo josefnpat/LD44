@@ -53,7 +53,7 @@ MonoBehaviour:
   currentVelocity: {x: 0, y: 0, z: 0}
   facingDirection: 1
   accel: 1000
-  maxSpeed: 20
+  maxSpeed: 30
   frictionCoef: 0.75
   rotationSpeed: 0.15
   jumpForce: 1500
