@@ -13,10 +13,9 @@ public class DialogManager : MonoBehaviour {
 
 	private IDialogItem currentItem;
 
-
 	private void Start() {
 		if (player == null) {
-			Debug.LogWarning("Player has not been set on the Dialog Manager.");
+			Debug.LogError("Player has not been set on the Dialog Manager.");
 		}
 		if (dialogManagerUI == null) {
 			Debug.LogError("dialogManagerUI has not been set on the Dialog Manager.");
@@ -33,37 +32,37 @@ public class DialogManager : MonoBehaviour {
 		}
 	}
 
-	public void Update() {
-		if(currentItem.next(this) != null && _dialogManagerUI.ReadyForNext()){
-			setDialog(currentItem.next(this));
-		}
-	}
-
-	public void setDialog(IDialogItem item) {
-		if (currentItem == null)
-		{
-			if (player != null) {
-				player.GetComponent<Actor>().SetState(EActorState.InConversation); // can't move
-			}
-			currentItem = item;
-			item.enter(this, _dialogManagerUI);
-		}
-
+    void advanceDialog() {
+        Debug.Assert(currentItem != null);
 		var next = currentItem.next(this);
-		if(next != null && next != currentItem)
-		{
-			currentItem.exit(this);
-			next.enter(this, _dialogManagerUI);
+		while(next != null && next != currentItem) {
+            Debug.Log("advance dialog " + next);
+			next.enter(this);
 			currentItem = next;
 			next = currentItem.next(this);
-		}
-		else
-		{
-			currentItem.exit(this);
+		};
+
+        if(next == null) {
+            Debug.Log("end conversation");
 			currentItem = null;
-			if (player != null) {
-				player.GetComponent<Actor>().SetState(EActorState.Walking);
-			}
+            Debug.Assert(player != null);
+            player.GetComponent<Actor>().SetState(EActorState.Walking);
+		}
+    }
+
+	public void setDialog(IDialogItem item) {
+        Debug.Assert(currentItem == null);
+        Debug.Assert(player != null && player.GetComponent<Actor>());
+        Debug.Log("setDialog " + item);
+        player.GetComponent<Actor>().SetState(EActorState.InConversation); // can't move
+        currentItem = item;
+		currentItem.enter(this);
+        advanceDialog();
+	}
+
+	public void Update() {
+		if(currentItem != null) {
+			advanceDialog();
 		}
 	}
 };

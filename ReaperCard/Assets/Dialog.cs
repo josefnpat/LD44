@@ -89,7 +89,7 @@ public class Dialog : ScriptableObject {
     }
 
     IDialogItem getNode(string id) {
-        if(id == null) return new DialogEnd();
+        if(id == null) return null;
         if(itemById.ContainsKey(id)) return itemById[id];
         var item = parseNode(nodeByIdCache[id]);
         Debug.Assert(itemById.ContainsKey(id));
@@ -103,7 +103,7 @@ public class Dialog : ScriptableObject {
                 return parseBranchNode(jsonData);
             case "Choice":
                 Debug.LogError("Choice nodes should have been parsed by previous Text node!");
-                return new DialogEnd();
+                return null;
             case "Set":
                 return parseSetNode(jsonData);
             case "Text":
@@ -120,14 +120,14 @@ public class Dialog : ScriptableObject {
                 } else if(name == "die") {
                     return parseDieNode(jsonData);
                 } else if(name == "end") {
-                    return new DialogEnd();
+                    return null;
                 } else {
                     Debug.LogError("Unrecognized node type 'Node' with name '" + jsonData["name"] + "' in " + dialogName);
-                    return new DialogEnd();
+                    return null;
                 }
             default:
                 Debug.LogError("Unrecognized node type '" + type + "'");
-                return new DialogEnd();
+                return null;
         }
     }
 

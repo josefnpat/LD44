@@ -10,8 +10,8 @@ public class Inventory : MonoBehaviour
 
     void Start() {
         //items = Game.GInstance.gameState.inventory;
-        addItem("fart"); // TESTING
-        addItem("bird"); // TESTING
+        //addItem("fart"); // TESTING
+        //addItem("bird"); // TESTING
     }
 
     void Update() {

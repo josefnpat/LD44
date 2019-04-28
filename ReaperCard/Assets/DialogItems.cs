@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public interface IDialogItem {
-    void enter(DialogManager dialogManager, DialogManagerUI dialogManagerUI);
-    void exit(DialogManager dialogManager);
+    void enter(DialogManager dialogManager);
+    // since next() decides when to leave the state,
+    // put code that would have been in exit() before into next()!
     IDialogItem next(DialogManager dialogManager);
 };
 
@@ -22,11 +24,7 @@ public class DialogBranch : IDialogItem {
         this.defaultBranch = defaultBranch;
     }
 
-    public void enter(DialogManager dialogManager, DialogManagerUI dialogManagerUI) {
-        Debug.Log("dialog: branch on " + varName);
-    }
-
-    public void exit(DialogManager dialogManager) {
+    public void enter(DialogManager dialogManager) {
     }
 
     public IDialogItem next(DialogManager dialogManager) {
@@ -48,6 +46,10 @@ public class DialogBranch : IDialogItem {
             }
         }
     }
+
+    public override string ToString() {
+        return string.Format("DialogBranch(variable='{0}', branches=[{1}])", varName, string.Join(", ", branches.Keys));
+    }
 };
 
 public class DialogChoice : IDialogItem {
@@ -67,20 +69,26 @@ public class DialogChoice : IDialogItem {
         this.choices = choices;
     }
 
-    public void enter(DialogManager dialogManager, DialogManagerUI dialogManagerUI) {
-        var choiceText = new List<string>();
-        Debug.Log("dialog - choices: " + string.Join(", ", choiceText));
-        // create ui items
-    }
-
-    public void exit(DialogManager dialogManager) {
-        // destroy ui items
+    public void enter(DialogManager dialogManager) {
+        var dialogManagerUI = dialogManager.dialogManagerUI.GetComponent<DialogManagerUI>();
+        dialogManagerUI.SetOptions(choices.Select(choice => choice.text).ToList());
     }
 
     public IDialogItem next(DialogManager dialogManager) {
-        var choice = choices[Random.Range(0, choices.Count)];
-        Debug.Log("dialog - chosen: " + choice.text);
-        return choice.next;
+        var dialogManagerUI = dialogManager.dialogManagerUI.GetComponent<DialogManagerUI>();
+        if(dialogManagerUI.ReadyForNext()) {
+            var choice = choices[dialogManagerUI.GetCurrentSelectedOption()];
+            Debug.Log("dialog - chosen: " + choice.text);
+            return choice.next;
+        }
+        return this;
+    }
+
+    public override string ToString() {
+        var choiceText = new List<string>();
+        foreach(var choice in choices)
+            choiceText.Add("'" + choice.text + "'");
+        return string.Format("DialogChoice(choices=[{0}])", string.Join(", ", choiceText));
     }
 };
 
@@ -98,16 +106,17 @@ public class DialogSetVar : IDialogItem {
         this.nextItem = nextItem;
     }
 
-    public void enter(DialogManager dialogManager, DialogManagerUI dialogManagerUI) {
+    public void enter(DialogManager dialogManager) {
         Debug.Log("dialog - set var " + variable + " to " + value);
         dialogManager.gameVars[variable] = value;
     }
 
-    public void exit(DialogManager dialogManager) {
-    }
-
     public IDialogItem next(DialogManager dialogManager) {
         return nextItem;
+    }
+
+    public override string ToString() {
+        return string.Format("DialogSetVar(variable='{0}', value='{1}', next='{2}')", variable, value, Util.typeName(nextItem));
     }
 };
 
@@ -123,20 +132,21 @@ public class DialogText : IDialogItem {
         this.nextItem = nextItem;
     }
 
-    public void enter(DialogManager dialogManager, DialogManagerUI dialogManagerUI) {
-        Debug.Log("dialog - show text: " + text);
-		// spawn ui elements
+    public void enter(DialogManager dialogManager) {
+        var dialogManagerUI = dialogManager.dialogManagerUI.GetComponent<DialogManagerUI>();
 		dialogManagerUI.SetText(text, "BUTFACE");
 	}
 
-    public void exit(DialogManager dialogManager) {
-        // remove ui elements
+    public IDialogItem next(DialogManager dialogManager) {
+        var dialogManagerUI = dialogManager.dialogManagerUI.GetComponent<DialogManagerUI>();
+		if(dialogManagerUI.ReadyForNext()) {
+            return nextItem;
+        }
+		return this;
     }
 
-    public IDialogItem next(DialogManager dialogManager) {
-		//var controls = dialogManager.player.GetComponent<PlayerController>().Controls;
-		//if(true || controls.IsDown(EKey.Confirm)) return this.nextItem;
-		return this;
+    public override string ToString() {
+        return string.Format("DialogText(text= '{0}', next={1})", text, Util.typeName(nextItem));
     }
 };
 
@@ -152,13 +162,10 @@ public class DialogGiveItem : IDialogItem {
         this.nextItem = nextItem;
     }
 
-    public void enter(DialogManager dialogManager, DialogManagerUI dialogManagerUI) {
+    public void enter(DialogManager dialogManager) {
         Debug.Log("dialog - give item " + itemName);
         var inventory = dialogManager.player.GetComponent<Inventory>();
         inventory.addItem(itemName);
-    }
-
-    public void exit(DialogManager dialogManager) {
     }
 
     public IDialogItem next(DialogManager dialogManager) {
@@ -177,13 +184,10 @@ public class DialogTakeItem : IDialogItem {
     public void setNext(IDialogItem nextItem) {
         this.nextItem = nextItem;
     }
-    public void enter(DialogManager dialogManager, DialogManagerUI dialogManagerUI) {
+    public void enter(DialogManager dialogManager) {
         Debug.Log("dialog - take item " + itemName);
         var inventory = dialogManager.player.GetComponent<Inventory>();
         inventory.removeItem(itemName);
-    }
-
-    public void exit(DialogManager dialogManager) {
     }
 
     public IDialogItem next(DialogManager dialogManager) {
@@ -203,12 +207,9 @@ public class DialogAudio : IDialogItem {
         this.nextItem = nextItem;
     }
 
-    public void enter(DialogManager dialogManager, DialogManagerUI dialogManagerUI) {
+    public void enter(DialogManager dialogManager) {
         Debug.Log("dialog - play audio " + soundFilename);
         // TODO: play sound
-    }
-
-    public void exit(DialogManager dialogManager) {
     }
 
     public IDialogItem next(DialogManager dialogManager) {
@@ -223,26 +224,12 @@ public class DialogDie : IDialogItem {
         this.nextItem = nextItem;
     }
 
-    public void enter(DialogManager dialogManager, DialogManagerUI dialogManagerUI) {
+    public void enter(DialogManager dialogManager) {
         Debug.Log("dialog - die");
         // TODO: have DialogManager.setDialog take a convo partner as an argument, then send it an event here?
     }
 
-    public void exit(DialogManager dialogManager) {
-
-    }
-
     public IDialogItem next(DialogManager dialogManager) {
         return nextItem;
-    }
-};
-
-public class DialogEnd : IDialogItem {
-    public void enter(DialogManager dialogManager, DialogManagerUI dialogManagerUI) {
-        Debug.Log("dialog - end");
-    }
-    public void exit(DialogManager dialogManager) {}
-    public IDialogItem next(DialogManager dialogManager) {
-        return null;
     }
 };

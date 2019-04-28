@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Option {
-	public string text = "";
-	public string next = "";
-}
-
 public class DialogManagerUI : MonoBehaviour {
 
 	public GameObject OptionPanel;
@@ -15,8 +10,7 @@ public class DialogManagerUI : MonoBehaviour {
 	public GameObject OptionText;
 	public GameObject [] Options;
 	public GameObject [] OptionsButtons;
-	private Option [] currentOptions = new Option [4];
-	private Option selectedOption;
+	private int selectedOption;
 
 	public GameObject TextPanel;
 	public GameObject TextName;
@@ -44,29 +38,19 @@ public class DialogManagerUI : MonoBehaviour {
 	}
 
 	// Option text, e.g. "Give Cigar | Run away"
-	public void SetOptions(Option option0, Option option1 = null, Option option2 = null, Option option3 = null) {
+	public void SetOptions(List<string> options) {
 		readyForNext = false;
 		DisableAllPanels();
 		OptionPanel.SetActive(true);
 
-		OptionsButtons [0].SetActive(option0 != null);
-		OptionsButtons [1].SetActive(option1 != null);
-		OptionsButtons [2].SetActive(option2 != null);
-		OptionsButtons [3].SetActive(option3 != null);
-
-		Options [0].GetComponent<Text>().text = option0.text;
-		currentOptions [0] = option0;
-		if (option1 != null) {
-			currentOptions [1] = option1;
-			Options [1].GetComponent<Text>().text = option1.text;
+		const int MAX_OPTIONS = 4;
+		Debug.Assert(options.Count <= MAX_OPTIONS);
+		for(var i = 0; i < options.Count; ++i) {
+			OptionsButtons[i].SetActive(true);
+			Options[i].GetComponent<Text>().text = options[i];
 		}
-		if (option2 != null) {
-			currentOptions [2] = option1;
-			Options [2].GetComponent<Text>().text = option2.text;
-		}
-		if (option3 != null) {
-			currentOptions [3] = option1;
-			Options [3].GetComponent<Text>().text = option3.text;
+		for(var i = options.Count; i < MAX_OPTIONS; ++i) {
+			OptionsButtons[i].SetActive(false);
 		}
 	}
 
@@ -93,10 +77,7 @@ public class DialogManagerUI : MonoBehaviour {
 
 	public void OptionButtonPressed(int index) {
 		// hook this up into the Dialog system as the callback
-		Debug.Log("You pressed button " + index);
-		Debug.Log("Text: " + currentOptions [index].text);
-		Debug.Log("Next: " + currentOptions [index].next);
-		selectedOption = currentOptions [index];
+		selectedOption = index;
 		DisableAllPanels();
 		readyForNext = true;
 	}
@@ -107,25 +88,17 @@ public class DialogManagerUI : MonoBehaviour {
 	}
 
 	public bool ReadyForNext() {
-		Debug.Log("checking ready for next");
 		return readyForNext;
 	}
 
 	// null is valid response
-	public Option GetCurrentSelectedOption() {
+	public int GetCurrentSelectedOption() {
 		return selectedOption;
 	}
 
 
 
 	public void ExampleSetOptions() {
-		Option option0 = new Option();
-		option0.text = "Let's Go!!";
-		option0.next = "id-1234-5678-9123";
-		Option option1 = new Option();
-		option1.text = "Go away!";
-		option1.next = "id-ABCD-EFGH-IJKL";
-		SetOptions(option0, option1);
 	}
 
 	public void ExampleSetText() {

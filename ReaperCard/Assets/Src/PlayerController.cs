@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
             if(PlayerComp && PlayerComp.InteractObj)
             {
-                print("confirm");
+                Debug.Log("interact");
                 Interactible interact = PlayerComp.InteractObj.GetComponent<Interactible>();
                 interact.Interact.Invoke();
             }
