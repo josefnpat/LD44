@@ -1617,7 +1617,7 @@ GameObject:
   - component: {fileID: 1752678432228184031}
   - component: {fileID: 1752678432228184030}
   - component: {fileID: 1752678432228184018}
-  - component: {fileID: 7529361792853763559}
+  - component: {fileID: 8782978114499971272}
   m_Layer: 5
   m_Name: DialogManager
   m_TagString: Untagged
@@ -1737,7 +1737,7 @@ MonoBehaviour:
   TextText: {fileID: 1752678431781909372}
   EventPanel: {fileID: 1752678432175039186}
   EventText: {fileID: 1752678431753269607}
---- !u!114 &7529361792853763559
+--- !u!114 &8782978114499971272
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1749,9 +1749,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6c3eaa8f75f154a99fe7aeda279136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogManagerUI: {fileID: 0}
-  initDialogPlayer: {fileID: 2785190533658434398, guid: cb19a09f616c2b84b83ba450d028067d,
-    type: 3}
+  initDialogPlayer: {fileID: 0}
+  musicManager: {fileID: 0}
   player: {fileID: 0}
   npc: {fileID: 0}
   initDialog: {fileID: 0}

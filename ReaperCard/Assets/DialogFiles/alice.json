@@ -23,13 +23,13 @@
     {
         "type": "Node",
         "id": "0aaaad8f-932c-4dcc-8988-6d884195399d",
-        "name": "audio:alice_return.ogg",
+        "name": "sfx:alice_return.ogg",
         "next": "b2816622-a2d5-43bd-a6c5-7abdb2901a77"
     },
     {
         "type": "Node",
         "id": "ecf1a991-66bb-49b4-9645-05e23e4a4611",
-        "name": "audio:alice1.ogg",
+        "name": "sfx:alice1.ogg",
         "next": "df16a750-92f3-4ab6-a5c8-b3745b2a5f3c"
     },
     {
@@ -50,7 +50,7 @@
     {
         "type": "Node",
         "id": "b94ba9a3-044c-4cba-984b-38016a797bc1",
-        "name": "audio:alice2.ogg",
+        "name": "sfx:alice2.ogg",
         "next": "f9fb9fb4-49e9-4d9b-a2b2-0d55ce27c557"
     },
     {
@@ -89,7 +89,7 @@
     {
         "type": "Node",
         "id": "65522f00-f6fc-4223-a0c9-145d9778cc76",
-        "name": "audio:alice_happy.ogg",
+        "name": "sfx:alice_happy.ogg",
         "next": "4ce95012-18dc-4426-8533-d6deb1a2ccc5"
     },
     {
