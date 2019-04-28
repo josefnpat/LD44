@@ -8,6 +8,7 @@ public class DialogInteraction : MonoBehaviour
     public Dialog dialog;
 
     void Interact(GameObject player) {
-        dialogManager.GetComponent<DialogManager>().setDialog(dialog.getRoot(), player, gameObject);
+        var npc = gameObject.transform.parent.gameObject;
+        dialogManager.GetComponent<DialogManager>().setDialog(dialog.getRoot(), player, npc);
     }
 }

@@ -7,7 +7,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public InputWrapper Controls;
-    public PlayerComponent PlayerComp;
 
     private Actor PlayerActor;
 

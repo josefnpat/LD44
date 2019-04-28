@@ -9,17 +9,9 @@ public class InventoryLayouter : MonoBehaviour
     private List<GameObject> itemObjects = new List<GameObject>();
     public GameObject player;
 
-    private Dictionary<string, InventoryItem> inventoryItems = new Dictionary<string, InventoryItem>();
-
     private const float ICON_SIZE_X = 0.1f;
     private const float PADDING_X = 0.02f; // expressed in terms of x but applied on both axes
     private const float SPACING = 0.02f;
-
-    void Awake() {
-        foreach(var invItem in Resources.FindObjectsOfTypeAll(typeof(InventoryItem)) as InventoryItem[]) {
-            inventoryItems[invItem.name] = invItem;
-        }
-    }
 
     void layout() {
         var totalSize = GetComponent<RectTransform>().sizeDelta;
@@ -48,7 +40,7 @@ public class InventoryLayouter : MonoBehaviour
         for(var i = 0; i < items.Count; ++i) {
             // there is an item, but it's the wrong one
             if(itemObjects.Count > i &&
-                    itemObjects[i].GetComponent<UiInventoryItem>().item.itemName != items[i]) {
+                    itemObjects[i].GetComponent<UiInventoryItem>().item != items[i]) {
                 Destroy(itemObjects[i]);
                 itemObjects[i] = null;
             }
@@ -60,15 +52,19 @@ public class InventoryLayouter : MonoBehaviour
             }
 
             if(itemObjects[i] == null) {
-                Debug.Assert(inventoryItems.ContainsKey(items[i]), "Missing inventory item of type " + items[i]);
-                var invItem = inventoryItems[items[i]];
                 var obj = new GameObject();
                 obj.transform.parent = transform;
-                obj.AddComponent<UiInventoryItem>().item = invItem;
-                obj.AddComponent<Image>().sprite = invItem.uiSprite;
+                obj.AddComponent<UiInventoryItem>().item = items[i];
+                obj.AddComponent<Image>().sprite = items[i].uiSprite;
                 itemObjects[i] = obj;
             }
         }
+
+        // delete extra items
+        var numExtra = itemObjects.Count - items.Count;
+        for(var i = items.Count; i < itemObjects.Count; ++i)
+            Destroy(itemObjects[i]);
+        itemObjects.RemoveRange(items.Count, numExtra);
 
         layout();
     }
