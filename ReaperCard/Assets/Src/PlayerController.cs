@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public InputWrapper Controls;
+    public PlayerComponent PlayerComp;
 
     public Actor PlayerActor;
     //public Actor PlayerActor
@@ -39,6 +40,22 @@ public class PlayerController : MonoBehaviour
         if(Controls.IsDown(EKey.Jump))
         {
             PlayerActor.TryJump();
+        }
+
+        if(Controls.IsDown(EKey.Confirm))
+        {
+            
+            if(!PlayerComp)
+            {
+                PlayerComp = PlayerActor.gameObject.GetComponentInChildren<PlayerComponent>();
+            }
+
+            if(PlayerComp && PlayerComp.InteractObj)
+            {
+                print("confirm");
+                Interactible interact = PlayerComp.InteractObj.GetComponent<Interactible>();
+                interact.Interact.Invoke();
+            }
         }
     }
 
