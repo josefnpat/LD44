@@ -167,6 +167,9 @@ public class Actor : MonoBehaviour
 
     public void ApplyVelocity(float dt)
     {
+        if (CurrentState == EActorState.InConversation)
+            return;
+
         if(Mathf.Approximately(pendingMovement.magnitude, 0))
         {
             currentVelocity *= frictionCoef;
@@ -198,6 +201,9 @@ public class Actor : MonoBehaviour
 
     public void TryJump()
     {
+        if (CurrentState == EActorState.InConversation)
+            return;
+
         Vector3 chkPos = transform.position;
         chkPos.y -= capsule.bounds.extents.y;
         Debug.Log(Physics.CheckSphere(chkPos, floorCheckSphereRadius, ~(1 << 8)));
