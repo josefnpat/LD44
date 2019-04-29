@@ -198,7 +198,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 39032850}
-  m_LocalRotation: {x: 0.1498359, y: -0.000000017012136, z: 0.0000000025781335, w: 0.9887109}
+  m_LocalRotation: {x: 0.1498359, y: 0.000000017012136, z: -0.0000000025781335, w: 0.9887109}
   m_LocalPosition: {x: -7.74, y: 16.3, z: -27.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -303,7 +303,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94426610}
-  m_LocalRotation: {x: 0.17191942, y: -0.00000003409917, z: 0.000000005950905, w: 0.98511106}
+  m_LocalRotation: {x: 0.17191942, y: -0.000000016864513, z: 0.0000000029431506, w: 0.98511106}
   m_LocalPosition: {x: -7.74, y: 6, z: -14.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -442,7 +442,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 178887287}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c9e3a86971deb4687aa4c79bbb6d77, type: 3}
   m_Name: 
@@ -647,7 +647,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 318554301}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c9e3a86971deb4687aa4c79bbb6d77, type: 3}
   m_Name: 
@@ -771,7 +771,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 483102968}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c9e3a86971deb4687aa4c79bbb6d77, type: 3}
   m_Name: 
@@ -2133,7 +2133,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216444268}
-  m_LocalRotation: {x: 0.1498359, y: -0.000000017012136, z: 0.0000000025781335, w: 0.9887109}
+  m_LocalRotation: {x: 0.1498359, y: 0.000000017012136, z: -0.0000000025781335, w: 0.9887109}
   m_LocalPosition: {x: -7.74, y: 11.999999, z: -27.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2975,7 +2975,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1836396264}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c9e3a86971deb4687aa4c79bbb6d77, type: 3}
   m_Name: 
