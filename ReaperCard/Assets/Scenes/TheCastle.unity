@@ -198,7 +198,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 39032850}
-  m_LocalRotation: {x: 0.19329783, y: 0.00000001688188, z: -0.0000000033259655, w: 0.98114014}
+  m_LocalRotation: {x: 0.19329783, y: -0.000000016881863, z: 0.0000000033259473, w: 0.98114014}
   m_LocalPosition: {x: -7.74, y: 16.3, z: -27.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -303,7 +303,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94426610}
-  m_LocalRotation: {x: 0.19329783, y: 0.00000001688188, z: -0.0000000033259655, w: 0.98114014}
+  m_LocalRotation: {x: 0.19329783, y: -0.000000016881863, z: 0.0000000033259473, w: 0.98114014}
   m_LocalPosition: {x: -7.74, y: 11.999999, z: -27.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -661,6 +661,12 @@ PrefabInstance:
       propertyPath: dialogManager
       value: 
       objectReference: {fileID: 586715420}
+    - target: {fileID: 7767376594564012555, guid: 5e3d94c6f6440fa48a41adfd59c955f8,
+        type: 3}
+      propertyPath: dialog
+      value: 
+      objectReference: {fileID: 11400000, guid: e02929b62e58c4a4eb93747db7ea7afd,
+        type: 2}
     - target: {fileID: 6704428224942347150, guid: 5e3d94c6f6440fa48a41adfd59c955f8,
         type: 3}
       propertyPath: readyIcon
@@ -1503,6 +1509,12 @@ PrefabInstance:
       propertyPath: dialogManager
       value: 
       objectReference: {fileID: 586715420}
+    - target: {fileID: 8746075429349550749, guid: 74ab7762db768814183b109144512ef4,
+        type: 3}
+      propertyPath: dialog
+      value: 
+      objectReference: {fileID: 11400000, guid: 2301428176db61541b3a82bf4f691585,
+        type: 2}
     - target: {fileID: 7659215261248047813, guid: 74ab7762db768814183b109144512ef4,
         type: 3}
       propertyPath: readyIcon
@@ -1735,6 +1747,12 @@ PrefabInstance:
       propertyPath: soundManager
       value: 
       objectReference: {fileID: 6254651397958936052}
+    - target: {fileID: 8782978114499971272, guid: 9149060acb3bd44478e7004f0d95f940,
+        type: 3}
+      propertyPath: initDialog
+      value: 
+      objectReference: {fileID: 11400000, guid: 9c71a7285928d7a42884524c3e1bee0c,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9149060acb3bd44478e7004f0d95f940, type: 3}
 --- !u!1 &1330282962
