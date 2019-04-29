@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8566415049958192226}
   - component: {fileID: 3495412385151039854}
   - component: {fileID: 6372515887766400642}
+  - component: {fileID: 884820451811137537}
   m_Layer: 8
   m_Name: PlayerPawnPrefab
   m_TagString: Untagged
@@ -93,6 +94,18 @@ CapsuleCollider:
   m_Height: 8
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &884820451811137537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2785190533658434398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0db9b6c482488914798c1e3d788b3903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5280149493867086608
 GameObject:
   m_ObjectHideFlags: 0
