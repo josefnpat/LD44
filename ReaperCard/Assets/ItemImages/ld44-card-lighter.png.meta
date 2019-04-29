@@ -5,8 +5,8 @@ TextureImporter:
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
-    mipMapMode: 0
-    enableMipMap: 0
+    mipMapMode: 1
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -97,7 +97,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6783056b8740c614d9027f3d8c04777d
     internalID: 0
     vertices: []
     indices: 
