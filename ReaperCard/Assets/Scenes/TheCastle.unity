@@ -224,7 +224,7 @@ MonoBehaviour:
   m_UpdateMethod: 0
   m_DefaultBlend:
     m_Style: 1
-    m_Time: 2
+    m_Time: 1
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -280,14 +280,14 @@ MonoBehaviour:
   m_LookAt: {fileID: 1330282963}
   m_Follow: {fileID: 206035124}
   m_Lens:
-    FieldOfView: 20
+    FieldOfView: 100
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
-    m_BlendHint: 0
+    m_BlendHint: 1
     m_InheritPosition: 0
     m_OnCameraLive:
       m_PersistentCalls:
@@ -303,8 +303,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94426610}
-  m_LocalRotation: {x: 0.17191942, y: 0.000000013596114, z: -0.000000002372771, w: 0.98511106}
-  m_LocalPosition: {x: -7.74, y: 11.999999, z: -27.7}
+  m_LocalRotation: {x: 0.17191942, y: -0.000000020523478, z: 0.0000000035817054, w: 0.98511106}
+  m_LocalPosition: {x: -7.74, y: 11.999999, z: -18.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1074697687}
@@ -423,6 +423,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 206035119}
+  iconSizeX: 0.05
+  paddingX: 0.02
+  spacing: 0.02
+  scaleUpSpeed: 4
+  scaleDownSpeed: 4
+  maxScale: 2
 --- !u!1 &206035119 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2785190533658434398, guid: cb19a09f616c2b84b83ba450d028067d,
@@ -1659,7 +1665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 2
-  m_FollowOffset: {x: 0, y: 13, z: -25}
+  m_FollowOffset: {x: 0, y: 7, z: -12}
   m_XDamping: 1
   m_YDamping: 0
   m_ZDamping: 1
@@ -1692,7 +1698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f7633c93f0364a418841eeb8b058634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: 0, y: 4, z: 0}
+  m_TrackedObjectOffset: {x: 0, y: 2.52, z: 0}
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 6.3
   m_LookaheadIgnoreY: 0
@@ -1715,8 +1721,8 @@ MonoBehaviour:
   m_MaxDollyOut: 5000
   m_MinimumDistance: 1
   m_MaximumDistance: 5000
-  m_MinimumFOV: 3
-  m_MaximumFOV: 60
+  m_MinimumFOV: 31
+  m_MaximumFOV: 46
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
 --- !u!1 &1105004806
@@ -2027,7 +2033,7 @@ MonoBehaviour:
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
-    m_BlendHint: 0
+    m_BlendHint: 1
     m_InheritPosition: 0
     m_OnCameraLive:
       m_PersistentCalls:
