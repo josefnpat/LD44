@@ -8,8 +8,9 @@ public class MusicManager : MonoBehaviour {
 		public string name;
 		public AudioClip song;
 	}
-    public List<MusicEntry> songs = new List<MusicEntry>();
+	public List<MusicEntry> songs = new List<MusicEntry>();
 	public string initFile;
+	public string currentFile;
 	private AudioSource audioSource;
 
 	void Start() {
@@ -22,6 +23,10 @@ public class MusicManager : MonoBehaviour {
 	}
 
 	public void ChangeTo(string songName) {
+		if (songName == currentFile) {
+			return;
+		}
+		currentFile = songName;
 		songName = songName.Trim();
 		Debug.Log("Changing music to: " + songName);
 		audioSource.Stop();
