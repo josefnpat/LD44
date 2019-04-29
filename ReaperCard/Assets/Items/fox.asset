@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: fox
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItem
   itemName: fox
-  uiSprite: {fileID: 21300000, guid: d58819d579d59284b8c4149152f21440, type: 3}
+  uiSprite: {fileID: 21300000, guid: 76228352fef315648a05bde2a63f56de, type: 3}
   texture: {fileID: 2800000, guid: 76228352fef315648a05bde2a63f56de, type: 3}
