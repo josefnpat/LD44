@@ -133,7 +133,8 @@ public class DialogText : IDialogItem {
 
     public void enter(DialogManager dialogManager) {
         var dialogManagerUI = dialogManager.GetComponent<DialogManagerUI>();
-		dialogManagerUI.SetText(text, dialogManager.npc.name);
+        var name = dialogManager.npc ? dialogManager.npc.name : "Death";
+		dialogManagerUI.SetText(text, name);
 	}
 
     public IDialogItem next(DialogManager dialogManager) {
