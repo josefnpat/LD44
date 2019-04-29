@@ -98,7 +98,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 112000000, guid: f5fdf3a53ec99df43a25e96d7d979eb6,
     type: 2}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -303,7 +303,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94426610}
-  m_LocalRotation: {x: 0.17191942, y: 0.000000017476838, z: -0.0000000030500267, w: 0.98511106}
+  m_LocalRotation: {x: 0.17191942, y: -0.000000033434702, z: 0.0000000058349436, w: 0.98511106}
   m_LocalPosition: {x: -7.74, y: 6, z: -14.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -447,7 +447,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c9e3a86971deb4687aa4c79bbb6d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatOffsetY: 3.45
   floatSpeed: 1
   floatRadius: 0.4
 --- !u!1 &206035119 stripped
@@ -736,7 +735,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c9e3a86971deb4687aa4c79bbb6d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatOffsetY: 24.7
   floatSpeed: 1
   floatRadius: 0.4
 --- !u!1001 &422878666
@@ -860,7 +858,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c9e3a86971deb4687aa4c79bbb6d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatOffsetY: 23.8
   floatSpeed: 1
   floatRadius: 0.4
 --- !u!1 &497047843 stripped
@@ -1368,7 +1365,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c9e3a86971deb4687aa4c79bbb6d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatOffsetY: 0
   floatSpeed: 0.8
   floatRadius: 0.5
 --- !u!1 &726056515
@@ -1809,7 +1805,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 821236626}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 170.9, y: 3.57, z: 8.42}
+  m_LocalPosition: {x: 84.9, y: 7.63, z: 20.49}
   m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_Children:
   - {fileID: 1403834705}
@@ -1829,7 +1825,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c9e3a86971deb4687aa4c79bbb6d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatOffsetY: 1.69
   floatSpeed: 1
   floatRadius: 0.4
 --- !u!1 &871006351
@@ -1918,7 +1913,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 871006351}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 104.24, y: 1.9, z: 4.6}
+  m_LocalPosition: {x: 179.53, y: 2.9, z: 10}
   m_LocalScale: {x: 0.8, y: 1, z: 0.8}
   m_Children:
   - {fileID: 625104434}
@@ -1938,7 +1933,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c9e3a86971deb4687aa4c79bbb6d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatOffsetY: 0.8
   floatSpeed: 1
   floatRadius: 0.4
 --- !u!1 &908653413
@@ -3285,7 +3279,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1681196566}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 78.8, y: 0.99, z: 13.7}
+  m_LocalPosition: {x: 162.27, y: 22.22, z: 25.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1716197421}
@@ -3305,7 +3299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c9e3a86971deb4687aa4c79bbb6d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatOffsetY: 0.8
   floatSpeed: 1
   floatRadius: 0.4
 --- !u!1 &1716197420
@@ -3410,7 +3403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c9e3a86971deb4687aa4c79bbb6d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatOffsetY: 5
   floatSpeed: 1
   floatRadius: 0.4
 --- !u!1001 &2022425587
