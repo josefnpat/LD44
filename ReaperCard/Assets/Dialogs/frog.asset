@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5c7453400db2ef46b131f1e03255383, type: 3}
-  m_Name: test
+  m_Name: frog
   m_EditorClassIdentifier: 
-  dialogName: test
-  jsonFile: {fileID: 4900000, guid: e370e45a70e6ddc4d805e0fe0fad2ddd, type: 3}
+  dialogName: frog
+  jsonFile: {fileID: 4900000, guid: df11ec954f7d99148888641f90796b6b, type: 3}
