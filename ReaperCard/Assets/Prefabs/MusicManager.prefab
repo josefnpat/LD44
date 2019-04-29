@@ -45,13 +45,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   songs:
-  - name: handofdeath
+  - name: bgmHandOfDeath
     song: {fileID: 8300000, guid: 7f9cd1a0c5c99764aad549a1d639b95a, type: 3}
-  - name: sight
+  - name: LD_Sight_Dem3
     song: {fileID: 8300000, guid: b734483f8d25808478d7be5278e2b3df, type: 3}
-  - name: ticktock
+  - name: LD_TickTock_Dem1
     song: {fileID: 8300000, guid: 705ce05b07fcc4e46b33e99825540adf, type: 3}
-  initFile: handofdeath
+  - name: Showdown1
+    song: {fileID: 8300000, guid: b9b7a6ea60a950340809ed7ff3451001, type: 3}
+  initFile: bgmHandOfDeath
 --- !u!82 &8366089742443445821
 AudioSource:
   m_ObjectHideFlags: 0
