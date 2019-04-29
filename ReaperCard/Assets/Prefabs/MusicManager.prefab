@@ -54,6 +54,8 @@ MonoBehaviour:
   - name: Showdown3
     song: {fileID: 8300000, guid: 61aa982b1bb5cd844aae1a523e95922d, type: 3}
   initFile: bgmHandOfDeath
+  fadeOutTime: 0.8
+  fadeInTime: 0.8
 --- !u!82 &8366089742443445821
 AudioSource:
   m_ObjectHideFlags: 0
