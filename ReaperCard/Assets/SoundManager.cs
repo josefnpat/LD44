@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    public static SoundManager instance;
+
     [System.Serializable]
     public class SoundEntry
     {
@@ -12,6 +14,14 @@ public class SoundManager : MonoBehaviour
     }
     public List<SoundEntry> sounds = new List<SoundEntry>();
     private AudioSource audioSource;
+
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+    }
 
     void Start()
     {

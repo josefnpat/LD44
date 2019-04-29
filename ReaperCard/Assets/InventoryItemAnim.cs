@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class InventoryItemAnim : MonoBehaviour
 {
-    private float startTime;
-
     public float animDuration = 3.0f;
     public float animEndDuration = 0.5f;
     public float height = 8.0f;
     public float startRadius = 5.0f;
     public float rotSpeed = 3.0f; // rotations per second
+
+    private float startTime;
+    private bool doneSoundPlayed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +39,10 @@ public class InventoryItemAnim : MonoBehaviour
 
         if (dt > animDuration)
         {
-            // TODO: play sound
+            if(!doneSoundPlayed) {
+                SoundManager.instance.Play("itempickupdone");
+                doneSoundPlayed = true;
+            }
         }
 
         if (dt > animDuration + animEndDuration)

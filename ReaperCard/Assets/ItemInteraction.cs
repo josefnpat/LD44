@@ -10,5 +10,6 @@ public class ItemInteraction : MonoBehaviour
         player.GetComponent<Inventory>().addItem(item.itemName);
         var itemObject = gameObject.transform.parent.gameObject;
         Destroy(itemObject);
+        SoundManager.instance.Play("itempickup");
     }
 }

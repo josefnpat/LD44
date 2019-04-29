@@ -24,11 +24,13 @@ public class DoorInteraction : MonoBehaviour
 
         if(hasAllKeys) {
             door.OpenDoor(true);
+            SoundManager.instance.Play("dooropen");
         } else {
             dialogManager.GetComponent<DialogManagerUI>().SetEvent(closedMessage);
             player.GetComponent<Actor>().SetState(EActorState.InConversation);
             this.player = player;
             waitingForDialogManager = true;
+            SoundManager.instance.Play("doorclosed");
         }
     }
 
