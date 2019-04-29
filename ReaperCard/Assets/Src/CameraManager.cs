@@ -6,8 +6,6 @@ using Cinemachine;
 public class CameraManager : MonoBehaviour
 {
   [SerializeField]
-  public GameObject Player;
-  private Actor PlayerActor;
   public GameObject FocusObject; // Additional actor to focus on when the player is conversing with them
 
   [SerializeField]
@@ -18,50 +16,40 @@ public class CameraManager : MonoBehaviour
   public GameObject DialogueCamera;
 
   private CinemachineVirtualCamera[] CameraArray = new CinemachineVirtualCamera[EActorState.GetNames(typeof(EActorState)).Length];
-  private EActorState activeCamera = EActorState.Walking;
-
-  public void Start()
+  public void Awake()
   {
-    PlayerActor = Player.GetComponent<Actor>();
-    activeCamera = PlayerActor.GetState();
-
-    CinemachineVirtualCamera vcam;
-    vcam = WalkingCamera.GetComponent<CinemachineVirtualCamera>();
-    if (vcam)
-    {
-      CameraArray[(int)EActorState.Walking] = vcam;
-    }
-
-    vcam = ItemCamera.GetComponent<CinemachineVirtualCamera>();
-    if (vcam)
-    {
-      CameraArray[(int)EActorState.ReceivingItem] = vcam;
-    }
-
-    vcam = DialogueCamera.GetComponent<CinemachineVirtualCamera>();
-    if (vcam)
-    {
-      CameraArray[(int)EActorState.InConversation] = vcam;
-    }
+    CameraArray[(int)EActorState.Walking] = WalkingCamera.GetComponent<CinemachineVirtualCamera>();
+    CameraArray[(int)EActorState.ReceivingItem] = ItemCamera.GetComponent<CinemachineVirtualCamera>();
+    CameraArray[(int)EActorState.InConversation] = DialogueCamera.GetComponent<CinemachineVirtualCamera>();
   }
 
-  void onStartDialog(GameObject player, GameObject npc)
+  public void onStartDialog(GameObject player, GameObject npc)
   {
-    CinemachineVirtualCamera DialogCamera = CameraArray[(int)EActorState.InConversation];
-    //DialogCamera.
-  }
-
-  void onEndDialog()
-  {
-
-  }
-
-  void Update()
-  {
-    EActorState newState = PlayerActor.GetState();
-    if (newState != activeCamera)
-    {
-      //Switch camera to the new one
+    if (npc) {
+      FocusObject.GetComponent<CinemachineTargetGroup>().m_Targets[1].target = npc.transform;
     }
+
+    var DialogCamera = CameraArray[(int)EActorState.InConversation];
+    Debug.Log(DialogCamera);
+    Debug.Log(CameraArray.Length);
+    DialogCamera.Priority = 15;
+
+    //DialogCamera.m_LookAt = FocusObject.transform;
   }
+
+  public void onEndDialog()
+  {
+    Debug.Log("ending camera zoom");
+    var DialogCamera = CameraArray[(int)EActorState.InConversation];
+    DialogCamera.Priority = 9;
+  }
+
+  // void Update()
+  // {
+    // EActorState newState = PlayerActor.GetState();
+    // if (newState != activeCamera)
+    // {
+       // Switch camera to the new one
+    // }
+  // }
 }
