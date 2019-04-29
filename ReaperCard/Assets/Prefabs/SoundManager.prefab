@@ -59,6 +59,16 @@ MonoBehaviour:
     sound: {fileID: 8300000, guid: 765f6ddbdfbc0a84f9674cde3fc7a906, type: 3}
   - name: card
     sound: {fileID: 8300000, guid: ed9cce60371b92641bb0b0a5887fb658, type: 3}
+  - name: death
+    sound: {fileID: 8300000, guid: 15d2bd3a549297d4783ab7b883d0b65e, type: 3}
+  - name: bird
+    sound: {fileID: 8300000, guid: a2d2115a08a7e7746bc39d4fb864d248, type: 3}
+  - name: fox
+    sound: {fileID: 8300000, guid: b38396b137ca84b4e9eda0c0b2eeff81, type: 3}
+  - name: rabbit
+    sound: {fileID: 8300000, guid: d9b3c1bc0b184e84a8ddd1c21d945af0, type: 3}
+  - name: frog
+    sound: {fileID: 8300000, guid: 2690203616cb4964c91e0c2d79a4eb5c, type: 3}
 --- !u!82 &4076924711469961745
 AudioSource:
   m_ObjectHideFlags: 0
