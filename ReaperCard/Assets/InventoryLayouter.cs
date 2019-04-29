@@ -14,12 +14,12 @@ public class InventoryLayouter : MonoBehaviour
     private List<ItemData> items = new List<ItemData>();
     public GameObject player;
 
-    private const float ICON_SIZE_X = 0.1f;
-    private const float PADDING_X = 0.02f; // expressed in terms of x but applied on both axes
-    private const float SPACING = 0.02f;
-    private const float SCALE_UP_SPEED = 4.0f;
-    private const float SCALE_DOWN_SPEED = 4.0f;
-    private const float MAX_SCALE = 2.0f;
+    public float iconSizeX = 0.05f;
+    public float paddingX = 0.02f; // expressed in terms of x but applied on both axes
+    public float spacing = 0.02f;
+    public float scaleUpSpeed = 4.0f;
+    public float scaleDownSpeed = 4.0f;
+    public float maxScale = 2.0f;
 
     void resetLayout()
     {
@@ -33,36 +33,35 @@ public class InventoryLayouter : MonoBehaviour
         var xyFactor = totalSize.x / totalSize.y;
 
         var totalWidthPct = 0f;
-        foreach (var item in items) totalWidthPct += ICON_SIZE_X * item.scale + SPACING;
-        totalWidthPct -= SPACING;
-        totalWidthPct += PADDING_X;
+        foreach (var item in items) totalWidthPct += iconSizeX * item.scale + spacing;
+        totalWidthPct -= spacing;
+        totalWidthPct += paddingX;
         var totalWidth = totalWidthPct * totalSize.x;
 
-        var y = (-0.5f + PADDING_X * xyFactor) * totalSize.y;
+        var y = (-0.5f + paddingX * xyFactor) * totalSize.y;
         var x = 0.5f * totalSize.x - totalWidth;
         foreach (var item in items)
         {
             var trafo = item.itemObject.GetComponent<RectTransform>();
             trafo.pivot = new Vector2(0f, 0f);
             trafo.localPosition = new Vector3(x, y, 0f);
+            var spriteRect = item.itemObject.GetComponent<Image>().sprite.rect;
+            trafo.sizeDelta = new Vector2(spriteRect.width, spriteRect.height);
             var imgSize = trafo.sizeDelta;
-            trafo.localScale = new Vector3(
-                ICON_SIZE_X * totalSize.x / imgSize.x * item.scale,
-                ICON_SIZE_X * xyFactor * totalSize.y / imgSize.y * item.scale,
-                1f);
+            var scale = iconSizeX * item.scale * totalSize.x / imgSize.x;
+            trafo.localScale = new Vector3(scale, scale, 1f);
             var screenImgSize = new Vector2(imgSize.x * trafo.localScale.x,
                 imgSize.y * trafo.localScale.y);
 
             var inRect = mousePos.x > x && mousePos.x < x + screenImgSize.x
                 && mousePos.y > y && mousePos.y < y + screenImgSize.y;
 
-            x += totalSize.x * (ICON_SIZE_X * item.scale + SPACING);
+            x += totalSize.x * (iconSizeX * item.scale + spacing);
             if (inRect)
-                item.scale += SCALE_UP_SPEED * Time.deltaTime;
+                item.scale += scaleUpSpeed * Time.deltaTime;
             else
-                item.scale -= SCALE_DOWN_SPEED * Time.deltaTime;
-            item.scale = Mathf.Clamp(item.scale, 1f, MAX_SCALE);
-
+                item.scale -= scaleDownSpeed * Time.deltaTime;
+            item.scale = Mathf.Clamp(item.scale, 1f, maxScale);
         }
     }
 
