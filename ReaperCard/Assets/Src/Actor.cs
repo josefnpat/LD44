@@ -149,7 +149,7 @@ public class Actor : MonoBehaviour
 
         if(Mathf.Approximately(pendingMovement.magnitude, 0))
         {
-            currentVelocity *= frictionCoef;
+            currentVelocity *= Mathf.Exp(Mathf.Log(frictionCoef) * 60.0f * dt);
             if (currentVelocity.magnitude < 0.01)
             {
                 currentVelocity = Vector3.zero;
