@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3105937f2211b0142bf982b7c3936d2c, type: 3}
   m_Name: rabbit
   m_EditorClassIdentifier: 
-  itemName: photo
+  itemName: rabbit
   uiSprite: {fileID: 21300000, guid: 1a6bf7b04f73ba745b0da6dbfe490bc5, type: 3}
   texture: {fileID: 2800000, guid: 1a6bf7b04f73ba745b0da6dbfe490bc5, type: 3}
