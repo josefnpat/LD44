@@ -8,11 +8,6 @@ public enum EFacingDirection
     Right
 }
 
-public enum EDoesFloat
-{
-    DoesNotFloat,
-    Floats
-}
 /*
  *  Actor
  *  Represents a character in the world.
@@ -56,14 +51,6 @@ public class Actor : MonoBehaviour
     public float rotationSpeed = 0.25f;
     public float jumpForce = 50f;
 
-    [Space(20)]
-    [Header("Floating Settings")]
-    public EDoesFloat doesFloat = EDoesFloat.Floats;
-    public float floatOffsetY = 1.53f;
-    public float floatSpeed = 8f;
-    public float floatRadius = 1.5f;
-    private float floatTimeOffset = 0f;
-
     private float floorCheckSphereRadius = 0f;
 
     [Header("Booyah")]
@@ -82,7 +69,6 @@ public class Actor : MonoBehaviour
 
         floorCheckSphereRadius = capsule.radius;
 
-        floatTimeOffset = Random.Range(0, 100);
         //transform.position += new Vector3(0, 10, 0);
 
         //Game.GInstance.SetPlayerActor(this);
@@ -96,15 +82,6 @@ public class Actor : MonoBehaviour
         float dt = Time.deltaTime;
         ApplyVelocity(dt);
         UpdateFacing(dt);
-
-        if (doesFloat == EDoesFloat.Floats)
-        {
-            Vector3 offset = LeftPlane.transform.localPosition;
-            offset.y = Mathf.Sin(Time.time / floatSpeed + floatTimeOffset) * floatRadius + floatOffsetY;
-            //print(y);
-            LeftPlane.transform.localPosition = offset;
-            RightPlane.transform.localPosition = offset;
-        }
 
         if(jumpHax)
         {
