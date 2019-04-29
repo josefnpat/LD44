@@ -206,7 +206,6 @@ public class Actor : MonoBehaviour
 
         Vector3 chkPos = transform.position;
         chkPos.y -= capsule.bounds.extents.y;
-        Debug.Log(Physics.CheckSphere(chkPos, floorCheckSphereRadius, ~(1 << 8)));
         //Instantiate(TempSphere, chkPos, new Quaternion());
         if (Physics.CheckSphere(chkPos, floorCheckSphereRadius, ~(1 << 8)) && body.velocity.y <= 0)
         {

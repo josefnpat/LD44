@@ -30,8 +30,6 @@ public class CameraManager : MonoBehaviour
     }
 
     var DialogCamera = CameraArray[(int)EActorState.InConversation];
-    Debug.Log(DialogCamera);
-    Debug.Log(CameraArray.Length);
     DialogCamera.Priority = 15;
 
     //DialogCamera.m_LookAt = FocusObject.transform;
@@ -39,7 +37,6 @@ public class CameraManager : MonoBehaviour
 
   public void onEndDialog()
   {
-    Debug.Log("ending camera zoom");
     var DialogCamera = CameraArray[(int)EActorState.InConversation];
     DialogCamera.Priority = 9;
   }

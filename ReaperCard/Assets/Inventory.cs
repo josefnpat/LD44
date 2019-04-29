@@ -28,7 +28,7 @@ public class Inventory : MonoBehaviour
         var item = InventoryItem.getByName(itemName);
         Debug.Assert(item, "Unknown item of type " + itemName);
         var obj = Instantiate(itemAnimPrefab, transform);
-        obj.SendMessage("Init", item);
+        obj.GetComponent<InventoryItemAnim>().Init(item);
     }
 
     public void addItem(string itemName, bool forceAnim = false)
