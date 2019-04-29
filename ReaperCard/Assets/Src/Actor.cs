@@ -77,9 +77,9 @@ public class Actor : MonoBehaviour
    public bool jumpHax = true;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        float dt = Time.deltaTime;
+        float dt = Time.fixedDeltaTime; //Time.deltaTime;
         ApplyVelocity(dt);
         UpdateFacing(dt);
 
@@ -169,9 +169,8 @@ public class Actor : MonoBehaviour
 
         }
 
-        body.MovePosition(transform.position + currentVelocity * dt);
-
-
+        transform.position += currentVelocity * dt;
+        body.position = transform.position;
 
         pendingMovement = Vector3.zero;
     }
