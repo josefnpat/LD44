@@ -77,6 +77,8 @@ MonoBehaviour:
     sound: {fileID: 8300000, guid: 765f6ddbdfbc0a84f9674cde3fc7a906, type: 3}
   - name: itempickupdone
     sound: {fileID: 8300000, guid: 34cb12a18cda6e245b52c6a6d23701de, type: 3}
+  - name: jump
+    sound: {fileID: 8300000, guid: 15d2bd3a549297d4783ab7b883d0b65e, type: 3}
 --- !u!82 &4076924711469961745
 AudioSource:
   m_ObjectHideFlags: 0

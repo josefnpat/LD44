@@ -32,7 +32,9 @@ public class SoundManager : MonoBehaviour
     {
         soundName = soundName.Trim();
         var sound = sounds.Find(item => item.name == soundName);
-        Debug.Assert(sound != null, "Unknown sound with name " + soundName);
-        audioSource.PlayOneShot(sound.sound);
+        if(sound != null)
+            audioSource.PlayOneShot(sound.sound);
+        else
+            Debug.LogWarning("Unknown sound with name " + soundName);
     }
 }

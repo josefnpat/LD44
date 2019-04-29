@@ -190,6 +190,7 @@ public class Actor : MonoBehaviour
             oldVel.y = 0;
             body.velocity = oldVel;
             body.AddForce(Vector3.up * jumpForce);
+            SoundManager.instance.Play("jump");
         }
     }
 
