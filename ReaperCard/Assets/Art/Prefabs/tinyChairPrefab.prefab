@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 550483954481519791}
   - component: {fileID: 8861026340982449817}
   - component: {fileID: 3009594124608772704}
+  - component: {fileID: 7036711011590477641}
   m_Layer: 0
-  m_Name: tinyChair
+  m_Name: tinyChairPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,3 +78,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &7036711011590477641
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3600891671576489660}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.006850279, y: 0.007506145, z: 0.01792001}
+  m_Center: {x: 0.00046017475, y: 2.328306e-10, z: 0.0038074306}
