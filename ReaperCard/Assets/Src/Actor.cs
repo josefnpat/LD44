@@ -18,10 +18,10 @@ public enum EDoesFloat
  *  Represents a character in the world.
  *  Serves as the basis for the player and NPC classes.
  *
- * 
+ *
  *  Relevant functionality:
  *        AddMovementInput(Vector3 Direction, float Scale)
- * 
+ *
  */
 
 public enum EActorState
@@ -78,7 +78,7 @@ public class Actor : MonoBehaviour
         PlaneContainer = transform.Find("PlaneContainer").gameObject;
         LeftPlane = PlaneContainer.transform.Find("LeftPlane").gameObject;
         RightPlane = PlaneContainer.transform.Find("RightPlane").gameObject;
-        
+
 
         floorCheckSphereRadius = capsule.radius;
 
@@ -152,7 +152,7 @@ public class Actor : MonoBehaviour
 
 
        //if(yaw > -180 && yaw < 0)
-       // { 
+       // {
             //if (facingDirection == EFacingDirection.Left)
             //{
             //    yaw = Mathf.Max(yaw - RotationSpeed * dt, -180);
@@ -182,7 +182,7 @@ public class Actor : MonoBehaviour
         {
             currentVelocity += pendingMovement * accel * dt;
         }
-        
+
         float mag = currentVelocity.magnitude;
 
         Vector3 direction = currentVelocity.normalized;
@@ -191,10 +191,10 @@ public class Actor : MonoBehaviour
             currentVelocity = direction * maxSpeed;
 
         }
-       
+
         body.MovePosition(transform.position + currentVelocity * dt);
 
-        
+
 
         pendingMovement = Vector3.zero;
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Actor))]
 public class Interactor : MonoBehaviour
 {
     [HideInInspector]
@@ -21,13 +22,16 @@ public class Interactor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GetComponent<Actor>().GetState() != EActorState.Walking)
+            return;
+
         if (interactables.Count > 0 && controls.IsDown(EKey.Confirm))
         {
             GameObject bestMatch = null;
             var bestDistance = Mathf.Infinity;
             foreach (var interactable in interactables)
             {
-                if(interactable == null) continue;
+                if (interactable == null) continue;
                 var dist = (transform.position - interactable.transform.position).magnitude;
                 if (dist < bestDistance)
                 {

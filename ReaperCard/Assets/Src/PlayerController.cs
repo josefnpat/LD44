@@ -2,30 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
+[RequireComponent(typeof(Actor))]
 public class PlayerController : MonoBehaviour
 {
-    public InputWrapper Controls;
-
-    private Actor PlayerActor;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        PlayerActor = gameObject.GetComponent<Actor>();
-        Controls = new InputWrapper();
-    }
+    public InputWrapper Controls = new InputWrapper();
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 Move = Controls.GetXY();
-        PlayerActor.AddMovementInput(Move, 1f);
+        Vector3 move = Controls.GetXY();
+        var actor = GetComponent<Actor>();
+        actor.AddMovementInput(move, 1f);
 
-        if(Controls.IsDown(EKey.Jump))
+        if (Controls.IsDown(EKey.Jump))
         {
-            PlayerActor.TryJump();
+            actor.TryJump();
         }
     }
 }
