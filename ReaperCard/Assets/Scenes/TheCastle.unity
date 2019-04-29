@@ -597,7 +597,7 @@ PrefabInstance:
     - target: {fileID: 8887966748553321090, guid: 5e3d94c6f6440fa48a41adfd59c955f8,
         type: 3}
       propertyPath: m_Name
-      value: MissFox
+      value: Ms Fox
       objectReference: {fileID: 0}
     - target: {fileID: 7625867975086993292, guid: 5e3d94c6f6440fa48a41adfd59c955f8,
         type: 3}
@@ -1778,7 +1778,7 @@ PrefabInstance:
     - target: {fileID: 3806907543634630761, guid: 86d17f2776c9b1e42b0a1922bbe34015,
         type: 3}
       propertyPath: m_Name
-      value: MrBird
+      value: Mr Bird
       objectReference: {fileID: 0}
     - target: {fileID: 2763022222238920039, guid: 86d17f2776c9b1e42b0a1922bbe34015,
         type: 3}
@@ -1857,7 +1857,7 @@ PrefabInstance:
     - target: {fileID: 6936808065082361334, guid: 74ab7762db768814183b109144512ef4,
         type: 3}
       propertyPath: m_Name
-      value: YoungRabbit
+      value: Young Rabbit
       objectReference: {fileID: 0}
     - target: {fileID: 8271034444582482168, guid: 74ab7762db768814183b109144512ef4,
         type: 3}
